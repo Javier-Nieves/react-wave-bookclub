@@ -1,8 +1,15 @@
 :root {
+  overscroll-behavior: none;
   --color-lightest: #fff4e6;
   --color-light: #ffe8cc;
   --color-medium: #ffa94d;
   --color-dark: #ff922b;
+}
+#main-view {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
 }
 
 input::-webkit-outer-spin-button,
@@ -40,9 +47,7 @@ html {
 }
 
 body {
-  background-size: cover;
-  background-attachment: fixed;
-  /* background-color: black; */
+  background-color: rgb(45, 45, 45);
   margin: 0;
 }
 
@@ -60,16 +65,16 @@ h3 {
 h2 {
   margin: 10px;
 }
-.brand {
+.brand-classic,
+.brand-history {
   font-size: 30px;
-  /* font-family: 'Playfair Display', serif; */
-  /* font-family: 'Neucha', cursive; */
   font-family: "Bad Script", cursive;
   display: inline-block;
   position: relative;
   color: rgba(252, 249, 252, 0.802);
 }
-.brand::after {
+.brand-classic::after,
+.brand-history::after {
   content: "";
   position: absolute;
   width: 100%;
@@ -81,13 +86,14 @@ h2 {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
-.brand:hover::after {
+.brand-classic:hover::after,
+.brand-history:hover::after {
   cursor: pointer;
   transform: scaleX(1);
   transform-origin: bottom left;
 }
 
-.brandNeon {
+.brand-modern {
   text-shadow: 0 0 4px #fff, 0 0 11px #fff;
   font-size: 30px;
   /* font-family: 'Playfair Display', serif; */
@@ -96,7 +102,7 @@ h2 {
   color: rgba(252, 249, 252, 0.802);
   margin: 14px 0 9px 0;
 }
-.brandNeon:hover {
+.brand-modern:hover {
   animation: flicker 1s infinite alternate;
   cursor: pointer;
 }
@@ -633,7 +639,7 @@ td {
   padding: 8px;
   border-radius: 3px;
 }
-.clas-head {
+.classic-head {
   background-color: rgba(255, 38, 0, 0.4);
   color: whitesmoke;
 }
@@ -653,7 +659,7 @@ td {
   cursor: pointer;
   transform: scale(1.02);
 }
-.mod-head {
+.modern-head {
   background: #03e9f4;
   color: #050801;
   box-shadow: 0 0 5px #03e9f4, 0 0 20px #03e9f4, 0 0 40px #03e9f4,
@@ -707,12 +713,20 @@ td {
   box-shadow: 0 0 5px #ffffff9b, 0 0 25px #d4ca01, 0 0 50px #f5e901a5;
 }
 /* * History */
+.history__wave-logo {
+  width: 100px;
+  margin: 10px;
+}
 #history-link,
 #reading-link {
   background-color: transparent;
   border: none;
 }
-.yearRow > * {
+.yearRow {
+  width: 100%;
+}
+.yearRow td {
+  width: 100%;
   font-size: 25px;
   background-color: rgba(2, 167, 167, 0.85);
   color: black;

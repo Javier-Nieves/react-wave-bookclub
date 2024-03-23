@@ -1,4 +1,4 @@
-export function Search() {
+export default function Search() {
   return (
     <div id="search-field-container">
       <form className="search-form">

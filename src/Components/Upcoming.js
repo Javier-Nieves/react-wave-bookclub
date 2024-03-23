@@ -1,4 +1,4 @@
-export function Upcoming({ upcomingBook }) {
+export default function Upcoming({ upcomingBook }) {
   return (
     <div
       className="upcoming-book-container dataContainer"

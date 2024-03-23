@@ -1,4 +1,4 @@
-export function Controls() {
+export default function Controls() {
   return (
     <div className="control-group">
       <img className="view-image" src="" alt="Book Cover" loading="lazy" />
