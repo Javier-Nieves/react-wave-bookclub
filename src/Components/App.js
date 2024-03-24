@@ -9,12 +9,15 @@ import Upcoming from "./Upcoming";
 import Controls from "./Controls";
 import Switch from "./Switch";
 import Table from "./Table";
+import BookView from "./BookView";
+import Cover from "./Cover";
 
 let initialBooks = mockBooks;
 export const classicLimit = new Date().getFullYear() - 50;
 
 export default function App() {
   const [books, setBooks] = useState(initialBooks);
+  const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
   const defaultStyle =
     upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
@@ -22,7 +25,13 @@ export default function App() {
     defaultStyle
     // "history"
     // "modern"
+    // "book"
   );
+
+  function handleShowBook(book) {
+    setBookToShow(book);
+    setCurrentView("book");
+  }
 
   return (
     <>
@@ -36,17 +45,35 @@ export default function App() {
             onSwitchView={setCurrentView}
             defaultStyle={defaultStyle}
           />
+
           <Search />
-          <Upcoming upcomingBook={upcomingBook} />
+
+          {(currentView === "modern" ||
+            currentView === "classic" ||
+            currentView === "history") && (
+            <Upcoming
+              upcomingBook={upcomingBook}
+              onChooseBook={handleShowBook}
+            />
+          )}
+          {currentView === "book" && <Cover book={bookToShow} />}
+
           <Controls />
         </div>
+
         <div className="main-right-part">
           <Switch currentView={currentView} onSwitchView={setCurrentView} />
-          <Table
-            books={books.sort((a, b) => a.year - b.year)}
-            tableType={currentView}
-            countries={countries}
-          />
+
+          {currentView !== "book" && (
+            <Table
+              books={books.sort((a, b) => a.year - b.year)}
+              onChooseBook={handleShowBook}
+              tableType={currentView}
+              countries={countries}
+            />
+          )}
+
+          {currentView === "book" && <BookView book={bookToShow} />}
         </div>
       </div>
     </>

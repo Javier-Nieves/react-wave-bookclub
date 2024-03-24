@@ -23,7 +23,8 @@ function NavButton({ children, currentView, onSwitchView, linkTo }) {
   return (
     <button
       id="reading-link"
-      className={`link brand-${currentView}`}
+      // className={`link brand-${currentView}`}
+      className={`link brand-modern`}
       onClick={() => onSwitchView(linkTo)}
     >
       {children}

@@ -1,9 +1,10 @@
-export function TableRow({ book, tableType, countries }) {
+export function TableRow({ book, onChooseBook, tableType, countries }) {
   const bookCountry = countries.find((c) => c.name.common === book.country);
   return (
     <tr
       className={`table-row ${tableType}-body dataContainer`}
       data-bookid={book.bookid}
+      onClick={() => onChooseBook(book)}
     >
       <td className="cl0">{book.title}</td>
       <td className="cl1">{book.author}</td>

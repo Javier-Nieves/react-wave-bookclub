@@ -1,9 +1,8 @@
-export default function Upcoming({ upcomingBook }) {
+export default function Upcoming({ upcomingBook, onChooseBook }) {
   return (
     <div
       className="upcoming-book-container dataContainer"
-      data-year={upcomingBook.year}
-      data-bookid={upcomingBook.bookid}
+      onClick={() => onChooseBook(upcomingBook)}
     >
       <div className="upcoming-container">
         <h1 id="upcoming-title">{upcomingBook.title}</h1>

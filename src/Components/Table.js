@@ -1,7 +1,7 @@
 import { CLASSIC_LIMIT } from "../config";
 import { TableRow, TableRowYear } from "./TableRow";
 
-export default function Table({ books, tableType, countries }) {
+export default function Table({ books, onChooseBook, tableType, countries }) {
   let yearChange;
   return (
     <table id={`${tableType}Table`}>
@@ -23,6 +23,7 @@ export default function Table({ books, tableType, countries }) {
               !book.read && (
                 <TableRow
                   book={book}
+                  onChooseBook={onChooseBook}
                   key={book.bookid}
                   tableType={tableType}
                   countries={countries}
@@ -37,6 +38,7 @@ export default function Table({ books, tableType, countries }) {
               !book.read && (
                 <TableRow
                   book={book}
+                  onChooseBook={onChooseBook}
                   key={book.bookid}
                   tableType={tableType}
                   countries={countries}
@@ -58,6 +60,7 @@ export default function Table({ books, tableType, countries }) {
                     <TableRowYear yearChange={yearChange} key={yearChange} />
                     <TableRow
                       book={book}
+                      onChooseBook={onChooseBook}
                       key={book.bookid}
                       tableType={tableType}
                       countries={countries}
@@ -70,6 +73,7 @@ export default function Table({ books, tableType, countries }) {
               return (
                 <TableRow
                   book={book}
+                  onChooseBook={onChooseBook}
                   key={book.bookid}
                   tableType={tableType}
                   countries={countries}

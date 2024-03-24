@@ -10,6 +10,8 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   overflow: hidden;
+  width: 100vw;
+  height: 100vh;
 }
 
 input::-webkit-outer-spin-button,
