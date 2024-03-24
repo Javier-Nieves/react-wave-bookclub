@@ -1,4 +1,5 @@
-export function TableRow({ book, tableType }) {
+export function TableRow({ book, tableType, countries }) {
+  const bookCountry = countries.find((c) => c.name.common === book.country);
   return (
     <tr
       className={`table-row ${tableType}-body dataContainer`}
@@ -7,14 +8,10 @@ export function TableRow({ book, tableType }) {
       <td className="cl0">{book.title}</td>
       <td className="cl1">{book.author}</td>
       <td className="cl2">{book.year}</td>
-      <td className="cl3" data-country="UK">
+      <td className="cl3" data-country={book.country}>
         <div className="flagContainer">
           <div>{book.country}</div>
-          <img
-            src="https://flagcdn.com/w320/gb.png"
-            className="smallFlag"
-            alt="flag"
-          />
+          <img src={bookCountry.flags.svg} className="smallFlag" alt="flag" />
         </div>
       </td>
       <td className="cl4">{book.pages}</td>

@@ -1,7 +1,7 @@
-import { classicLimit } from "./App";
+import { CLASSIC_LIMIT } from "../config";
 import { TableRow, TableRowYear } from "./TableRow";
 
-export default function Table({ books, tableType }) {
+export default function Table({ books, tableType, countries }) {
   let yearChange;
   return (
     <table id={`${tableType}Table`}>
@@ -19,19 +19,31 @@ export default function Table({ books, tableType }) {
         {tableType === "classic" &&
           books.map(
             (book) =>
-              book.year < classicLimit &&
+              book.year < CLASSIC_LIMIT &&
               !book.read && (
-                <TableRow book={book} key={book.bookid} tableType={tableType} />
+                <TableRow
+                  book={book}
+                  key={book.bookid}
+                  tableType={tableType}
+                  countries={countries}
+                />
               )
           )}
+
         {tableType === "modern" &&
           books.map(
             (book) =>
-              book.year > classicLimit &&
+              book.year > CLASSIC_LIMIT &&
               !book.read && (
-                <TableRow book={book} key={book.bookid} tableType={tableType} />
+                <TableRow
+                  book={book}
+                  key={book.bookid}
+                  tableType={tableType}
+                  countries={countries}
+                />
               )
           )}
+
         {tableType === "history" &&
           books
             .sort((a, b) => new Date(b.meeting_date) - new Date(a.meeting_date))
@@ -40,6 +52,7 @@ export default function Table({ books, tableType }) {
               if (!yearChange) yearChange = book.meeting_date?.slice(0, 4);
               if (book.meeting_date?.slice(0, 4) !== yearChange) {
                 yearChange = book.meeting_date?.slice(0, 4);
+                // render Year Row and Book row together
                 return (
                   <>
                     <TableRowYear yearChange={yearChange} key={yearChange} />
@@ -47,13 +60,20 @@ export default function Table({ books, tableType }) {
                       book={book}
                       key={book.bookid}
                       tableType={tableType}
+                      countries={countries}
                     />
                   </>
                 );
               }
               yearChange = book.meeting_date?.slice(0, 4);
+              // render just book row if it's from the same year
               return (
-                <TableRow book={book} key={book.bookid} tableType={tableType} />
+                <TableRow
+                  book={book}
+                  key={book.bookid}
+                  tableType={tableType}
+                  countries={countries}
+                />
               );
             })}
       </tbody>

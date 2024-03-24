@@ -1,6 +1,8 @@
 import { useState } from "react";
 
 import { mockBooks } from "../booklist";
+import { CLASSIC_LIMIT } from "../config";
+import { countries } from "../helpers";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
@@ -14,10 +16,11 @@ export const classicLimit = new Date().getFullYear() - 50;
 export default function App() {
   const [books, setBooks] = useState(initialBooks);
   const upcomingBook = books.find((book) => book.upcoming === true);
-  const defaultStyle = upcomingBook?.year < classicLimit ? "modern" : "classic";
+  const defaultStyle =
+    upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
   const [currentView, setCurrentView] = useState(
-    // defaultStyle
-    "history"
+    defaultStyle
+    // "history"
     // "modern"
   );
 
@@ -42,6 +45,7 @@ export default function App() {
           <Table
             books={books.sort((a, b) => a.year - b.year)}
             tableType={currentView}
+            countries={countries}
           />
         </div>
       </div>
