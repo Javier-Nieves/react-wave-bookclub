@@ -14,8 +14,9 @@ export const classicLimit = new Date().getFullYear() - 50;
 export default function App() {
   const [books, setBooks] = useState(initialBooks);
   const upcomingBook = books.find((book) => book.upcoming === true);
+  const defaultStyle = upcomingBook?.year < classicLimit ? "modern" : "classic";
   const [currentView, setCurrentView] = useState(
-    // upcomingBook?.year < classicLimit ? "modern" : "classic"
+    // defaultStyle
     "history"
     // "modern"
   );
@@ -27,7 +28,11 @@ export default function App() {
         style={{ backgroundImage: `url(/img/${currentView}-back.jpg)` }}
       >
         <div className="main-left-part">
-          <Navbar currentView={currentView} />
+          <Navbar
+            currentView={currentView}
+            onSwitchView={setCurrentView}
+            defaultStyle={defaultStyle}
+          />
           <Search />
           <Upcoming upcomingBook={upcomingBook} />
           <Controls />
