@@ -10,7 +10,6 @@ import Controls from "./Controls";
 import Switch from "./Switch";
 import Table from "./Table";
 import BookView from "./BookView";
-import Cover from "./Cover";
 
 let initialBooks = mockBooks;
 export const classicLimit = new Date().getFullYear() - 50;
@@ -19,6 +18,7 @@ export default function App() {
   const [books, setBooks] = useState(initialBooks);
   const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
+  // const upcomingBook = false;
   const defaultStyle =
     upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
   const [currentView, setCurrentView] = useState(
@@ -56,9 +56,14 @@ export default function App() {
               onChooseBook={handleShowBook}
             />
           )}
-          {currentView === "book" && <Cover book={bookToShow} />}
 
-          <Controls />
+          {currentView === "book" && (
+            <Controls
+              book={bookToShow}
+              upcomingBook={upcomingBook}
+              books={books}
+            />
+          )}
         </div>
 
         <div className="main-right-part">
