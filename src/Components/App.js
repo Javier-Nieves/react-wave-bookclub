@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { mockBooks } from "../booklist";
 import { CLASSIC_LIMIT } from "../config";
-import { countries } from "../helpers";
+import { countries, searchBooks } from "../helpers";
 import Navbar from "./Navbar";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
@@ -16,6 +16,7 @@ export const classicLimit = new Date().getFullYear() - 50;
 
 export default function App() {
   const [books, setBooks] = useState(initialBooks);
+  const [searchResults, setSearchResults] = useState([]);
   const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
   // const upcomingBook = false;
@@ -26,11 +27,19 @@ export default function App() {
     // "history"
     // "modern"
     // "book"
+    // "search"
   );
 
   function handleShowBook(book) {
     setBookToShow(book);
     setCurrentView("book");
+  }
+  async function handleSearchBooks(title) {
+    const results = await searchBooks(title, 1);
+    // check if there's any result
+    if (!results) return;
+    setCurrentView("search");
+    setSearchResults(results);
   }
 
   return (
@@ -46,7 +55,10 @@ export default function App() {
             defaultStyle={defaultStyle}
           />
 
-          <Search />
+          <Search
+            total={searchResults.length}
+            onSearchBooks={handleSearchBooks}
+          />
 
           {(currentView === "modern" ||
             currentView === "classic" ||
@@ -71,7 +83,11 @@ export default function App() {
 
           {currentView !== "book" && (
             <Table
-              books={books.sort((a, b) => a.year - b.year)}
+              books={
+                currentView === "search"
+                  ? searchResults
+                  : books.sort((a, b) => a.year - b.year)
+              }
               onChooseBook={handleShowBook}
               tableType={currentView}
               countries={countries}

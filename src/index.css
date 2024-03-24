@@ -11,7 +11,7 @@
   background-attachment: fixed;
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 input::-webkit-outer-spin-button,
@@ -696,18 +696,22 @@ td {
   box-shadow: 0 0 5px #03f4439b, 0 0 25px #23f602, 0 0 50px #03f4a4,
     0 0 200px #fcfcfb;
 }
-.history-head {
+.history-head,
+.search-head {
   background-color: rgba(2, 167, 167, 0.85);
   color: black;
 }
-.history-body:nth-of-type(odd) {
+.history-body:nth-of-type(odd),
+.search-body:nth-of-type(odd) {
   background-color: rgba(247, 214, 142, 0.603);
 }
-.history-body:nth-of-type(even) {
+.history-body:nth-of-type(even),
+.search-body:nth-of-type(even) {
   background-color: rgba(124, 207, 252, 0.451);
   color: rgb(237, 237, 237);
 }
-.history-body:hover {
+.history-body:hover,
+.search-body:hover {
   background-color: rgba(250, 196, 70, 0.83);
   cursor: pointer;
 }

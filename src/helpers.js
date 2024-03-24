@@ -1,7 +1,9 @@
-import { COUNTRIES_API, TIMEOUT_SEC } from "./config.js";
+import { COUNTRIES_API, TIMEOUT_SEC, RES_PAGE, BOOK_API } from "./config.js";
 
 export let countries = [];
 await getCountryList();
+//! TEST:
+await searchBooks("tree", 1);
 
 async function getCountryList() {
   try {
@@ -17,7 +19,19 @@ async function getCountryList() {
   }
 }
 
-export async function AJAX(url, uploadData = undefined, method = "GET") {
+export async function searchBooks(title, page) {
+  try {
+    // todo - if title contains several words - data is strange in pagination somehow
+    // prettier-ignore
+    const results = await AJAX(`${BOOK_API}?q=+intitle:${title}&startIndex=${(+page - 1) * +RES_PAGE}&maxResults=${RES_PAGE}`);
+    const uniformed = makeUniformed(results);
+    return uniformed;
+  } catch (err) {
+    throw err;
+  }
+}
+
+async function AJAX(url, uploadData = undefined, method = "GET") {
   try {
     let fetchPro;
     if (uploadData) {
@@ -43,4 +57,20 @@ function timeout(s) {
       reject(new Error(`Request took too long! Timeout after ${s} second`));
     }, s * 1000);
   });
+}
+
+function makeUniformed(data) {
+  console.log(data.items);
+  return data.items?.map((item) => ({
+    bookid: item?.id,
+    title: item.volumeInfo?.title,
+    author: item.volumeInfo?.authors?.[0] || "-",
+    desc: item.volumeInfo?.description,
+    image_link: item.volumeInfo?.imageLinks?.smallThumbnail || "img/club2.png",
+    pages: item.volumeInfo?.pageCount,
+    read: false,
+    upcoming: false,
+    rating: null,
+    meeting_date: null,
+  }));
 }

@@ -2,8 +2,7 @@ export function TableRow({ book, onChooseBook, tableType, countries }) {
   const bookCountry = countries.find((c) => c.name.common === book.country);
   return (
     <tr
-      className={`table-row ${tableType}-body dataContainer`}
-      data-bookid={book.bookid}
+      className={`table-row ${tableType}-body`}
       onClick={() => onChooseBook(book)}
     >
       <td className="cl0">{book.title}</td>
@@ -30,6 +29,18 @@ export function TableRowYear({ yearChange }) {
       <td />
       <td />
       <td />
+    </tr>
+  );
+}
+
+export function SearchRow({ book, onChooseBook }) {
+  return (
+    <tr className={`table-row modern-body`} onClick={() => onChooseBook(book)}>
+      <td className="cl0">
+        <img className="small-pic" src={book.image_link} alt="book cover" />
+      </td>
+      <td className="searchResultBig">{book.title}</td>
+      <td className="searchResultSmall">{book.author}</td>
     </tr>
   );
 }

@@ -1,5 +1,5 @@
 import { CLASSIC_LIMIT } from "../config";
-import { TableRow, TableRowYear } from "./TableRow";
+import { TableRow, TableRowYear, SearchRow } from "./TableRow";
 
 export default function Table({ books, onChooseBook, tableType, countries }) {
   let yearChange;
@@ -8,13 +8,19 @@ export default function Table({ books, onChooseBook, tableType, countries }) {
       <thead>
         <tr className={`${tableType}-head`}>
           <th className="cl0 Up">Book</th>
+          {tableType === "search" && <th>Title</th>}
           <th className="cl1 Up">Author</th>
-          <th className="cl2 Up">Year</th>
-          <th className="cl3 Up">Country</th>
-          <th className="cl4 Up">Pages</th>
+          {tableType !== "search" && (
+            <>
+              <th className="cl2 Up">Year</th>
+              <th className="cl3 Up">Country</th>
+              <th className="cl4 Up">Pages</th>
+            </>
+          )}
           {tableType === "history" && <th className="cl5 Up">Rating</th>}
         </tr>
       </thead>
+
       <tbody className={`${tableType}-table`}>
         {tableType === "classic" &&
           books.map(
@@ -45,6 +51,15 @@ export default function Table({ books, onChooseBook, tableType, countries }) {
                 />
               )
           )}
+
+        {tableType === "search" &&
+          books.map((book) => (
+            <SearchRow
+              book={book}
+              onChooseBook={onChooseBook}
+              key={book.bookid}
+            />
+          ))}
 
         {tableType === "history" &&
           books
