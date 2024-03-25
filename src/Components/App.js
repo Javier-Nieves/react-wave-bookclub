@@ -3,23 +3,27 @@ import { useState } from "react";
 import { mockBooks } from "../booklist";
 import { CLASSIC_LIMIT } from "../config";
 import { countries, searchBooks } from "../helpers";
-import Navbar from "./Navbar";
+import { getAllBooks } from "../model";
+import { Navbar, NavButton } from "./Navbar";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
 import Controls from "./Controls";
 import Switch from "./Switch";
 import Table from "./Table";
-import BookView from "./BookView";
+import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
 
-let initialBooks = mockBooks;
+// let initialBooks;
+// getInitialBooks();
+// let initialBooks = await getAllBooks();
+// console.log(resBooks);
 export const classicLimit = new Date().getFullYear() - 50;
 
 export default function App() {
-  const [books, setBooks] = useState(initialBooks);
+  const [books, setBooks] = useState(mockBooks);
   const [searchResults, setSearchResults] = useState([]);
+  const [totalResults, setTotalResults] = useState(0);
   const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
-  // const upcomingBook = false;
   const defaultStyle =
     upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
   const [currentView, setCurrentView] = useState(
@@ -30,13 +34,16 @@ export default function App() {
     // "search"
   );
 
+  // setBooks(initialBooks);
+
   function handleShowBook(book) {
     setBookToShow(book);
     setCurrentView("book");
   }
-  async function handleSearchBooks(title) {
-    const results = await searchBooks(title, 1);
-    // check if there's any result
+  async function handleSearchBooks(title, page) {
+    const { results, total } = await searchBooks(title, page);
+    // totalResults = total;
+    setTotalResults(total);
     if (!results) return;
     setCurrentView("search");
     setSearchResults(results);
@@ -49,15 +56,19 @@ export default function App() {
         style={{ backgroundImage: `url(/img/${currentView}-back.jpg)` }}
       >
         <div className="main-left-part">
-          <Navbar
-            currentView={currentView}
-            onSwitchView={setCurrentView}
-            defaultStyle={defaultStyle}
-          />
+          <Navbar>
+            <NavButton onSwitchView={setCurrentView} linkTo={defaultStyle}>
+              Reading List
+            </NavButton>
+            <NavButton onSwitchView={setCurrentView} linkTo={"history"}>
+              History
+            </NavButton>
+          </Navbar>
 
           <Search
-            total={searchResults.length}
             onSearchBooks={handleSearchBooks}
+            currentView={currentView}
+            totalResults={totalResults}
           />
 
           {(currentView === "modern" ||
@@ -74,6 +85,7 @@ export default function App() {
               book={bookToShow}
               upcomingBook={upcomingBook}
               books={books}
+              // onBooklistChange={setBooks}
             />
           )}
         </div>
@@ -94,9 +106,19 @@ export default function App() {
             />
           )}
 
-          {currentView === "book" && <BookView book={bookToShow} />}
+          {currentView === "book" && (
+            <BookView>
+              <BookTitle book={bookToShow} />
+              <BookStats book={bookToShow} />
+              <BookDescription book={bookToShow} />
+            </BookView>
+          )}
         </div>
       </div>
     </>
   );
 }
+
+// async function getInitialBooks() {
+//   initialBooks = await getAllBooks();
+// }

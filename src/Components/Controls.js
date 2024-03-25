@@ -3,18 +3,14 @@ export default function Controls({ book, upcomingBook, books }) {
     return (
       <>
         <Cover book={book} />
-        <div className="upcom-text">Club's rating:</div>
-        <button className="view-rating">{book.rating}</button>
+        <Rating rating={book.rating} />
       </>
     );
   if (book.upcoming)
     return (
       <div className="control-group">
         <Cover book={book} />
-        <div className="rate-btn-container">
-          <div className="upcom-text">Reading now</div>
-          <button className="rate-btn">Rate</button>
-        </div>
+        <RateBook />
       </div>
     );
 
@@ -42,5 +38,23 @@ function Cover({ book }) {
       alt="Book Cover"
       loading="lazy"
     />
+  );
+}
+
+function Rating({ rating }) {
+  return (
+    <>
+      <div className="upcom-text">Club's rating:</div>
+      <button className="view-rating">{rating}</button>
+    </>
+  );
+}
+
+function RateBook() {
+  return (
+    <div className="rate-btn-container">
+      <div className="upcom-text">Reading now</div>
+      <button className="rate-btn">Rate</button>
+    </div>
   );
 }

@@ -1,13 +1,15 @@
 import { useState } from "react";
 
-export default function Search({ total, onSearchBooks }) {
+import { RES_PAGE } from "../config";
+
+export default function Search({ totalResults, onSearchBooks, currentView }) {
   const [titleToSearch, setTitleToSearch] = useState("");
-  // TODO use State to control pagination
+  const [page, setPage] = useState(1);
 
   function searchHandler(e) {
     e.preventDefault();
-    onSearchBooks(titleToSearch);
-    setTitleToSearch("");
+    onSearchBooks(titleToSearch, page);
+    currentView !== "search" && setTitleToSearch("");
   }
   return (
     <div id="search-field-container">
@@ -22,9 +24,11 @@ export default function Search({ total, onSearchBooks }) {
         />
         <button className="searchBtn">Search</button>
       </form>
-      <div className="flex-column" id="searchInfo">
-        {/* <div class="paginationText"> Total results: {total}</div> */}
-      </div>
+      {currentView === "search" && (
+        <div className="flex-column" id="searchInfo">
+          <div className="paginationText"> Total results: {totalResults}</div>
+        </div>
+      )}
     </div>
   );
 }

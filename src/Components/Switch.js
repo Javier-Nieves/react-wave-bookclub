@@ -10,7 +10,9 @@ export default function Switch({ currentView, onSwitchView }) {
           }
         />
       )}
-      {currentView === "history" && (
+      {(currentView === "history" ||
+        currentView === "search" ||
+        currentView === "book") && (
         <img
           src={"img/club2.png"}
           className="history__wave-logo"

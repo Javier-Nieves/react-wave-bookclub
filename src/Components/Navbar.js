@@ -1,29 +1,11 @@
-export default function Navbar({ currentView, onSwitchView, defaultStyle }) {
-  return (
-    <div className="navbar">
-      <NavButton
-        currentView={currentView}
-        onSwitchView={onSwitchView}
-        linkTo={defaultStyle}
-      >
-        Reading List
-      </NavButton>
-      <NavButton
-        currentView={currentView}
-        onSwitchView={onSwitchView}
-        linkTo={"history"}
-      >
-        History
-      </NavButton>
-    </div>
-  );
+export function Navbar({ children }) {
+  return <div className="navbar">{children}</div>;
 }
 
-function NavButton({ children, currentView, onSwitchView, linkTo }) {
+export function NavButton({ children, onSwitchView, linkTo }) {
   return (
     <button
       id="reading-link"
-      // className={`link brand-${currentView}`}
       className={`link brand-modern`}
       onClick={() => onSwitchView(linkTo)}
     >

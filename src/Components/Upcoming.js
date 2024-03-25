@@ -6,16 +6,16 @@ export default function Upcoming({ upcomingBook, onChooseBook }) {
     >
       <div className="upcoming-container">
         <h1 id="upcoming-title">
-          {upcomingBook.title || "Choose the next book"}
+          {upcomingBook?.title || "Choose the next book"}
         </h1>
         {upcomingBook && (
           <h3 id="upcoming-autor">
-            {upcomingBook.author}, {upcomingBook.year}
+            {upcomingBook?.author}, {upcomingBook.year}
           </h3>
         )}
         <img
           id="upcoming-pic"
-          src={upcomingBook.image_link || "img/club2.png"}
+          src={upcomingBook?.image_link || "img/club2.png"}
           loading="lazy"
           alt="upcoming book"
         />

@@ -2,8 +2,6 @@ import { COUNTRIES_API, TIMEOUT_SEC, RES_PAGE, BOOK_API } from "./config.js";
 
 export let countries = [];
 await getCountryList();
-//! TEST:
-await searchBooks("tree", 1);
 
 async function getCountryList() {
   try {
@@ -23,9 +21,10 @@ export async function searchBooks(title, page) {
   try {
     // todo - if title contains several words - data is strange in pagination somehow
     // prettier-ignore
-    const results = await AJAX(`${BOOK_API}?q=+intitle:${title}&startIndex=${(+page - 1) * +RES_PAGE}&maxResults=${RES_PAGE}`);
-    const uniformed = makeUniformed(results);
-    return uniformed;
+    const response = await AJAX(`${BOOK_API}?q=+intitle:${title}&startIndex=${(+page - 1) * +RES_PAGE}&maxResults=${RES_PAGE}`);
+    const results = makeUniformed(response);
+    const total = response.totalItems;
+    return { results, total };
   } catch (err) {
     throw err;
   }
