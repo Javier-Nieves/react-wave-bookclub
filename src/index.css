@@ -138,7 +138,6 @@ h2 {
 }
 .main-left-part {
   background-color: rgba(30, 30, 30, 0.804);
-  border-radius: 10px;
   padding-bottom: 50px;
   position: fixed;
   width: 27vw;
@@ -521,8 +520,8 @@ h2 {
   width: 30%;
 }
 .load-screen-gif {
-  width: 25vw;
-  margin: 20vh 38vw;
+  width: 30%;
+  /* margin: 20vh 38vw; */
 }
 dialog {
   display: flex;

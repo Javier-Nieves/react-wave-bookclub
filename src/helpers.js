@@ -1,21 +1,14 @@
-import { COUNTRIES_API, TIMEOUT_SEC, RES_PAGE, BOOK_API } from "./config.js";
+import { TIMEOUT_SEC, RES_PAGE, BOOK_API } from "./config.js";
 
-export let countries = [];
-await getCountryList();
+// export let countries = [];
+// // await getCountryList();
+// useEffect(function () {
+//   async function getCountries() {
+//     // todo - catchAsync
+//   }
+// }, []);
 
-async function getCountryList() {
-  try {
-    if (!countries) return;
-    const data = await AJAX(COUNTRIES_API);
-    countries = data.map((item) => {
-      if (item.name.common === "United States") item.name.common = "USA";
-      if (item.name.common === "United Kingdom") item.name.common = "UK";
-      return item;
-    });
-  } catch (err) {
-    console.error("Error in country list API", err.message);
-  }
-}
+export const classicLimit = new Date().getFullYear() - 50;
 
 export async function searchBooks(title, page) {
   try {
@@ -59,7 +52,6 @@ function timeout(s) {
 }
 
 function makeUniformed(data) {
-  console.log(data.items);
   return data.items?.map((item) => ({
     bookid: item?.id,
     title: item.volumeInfo?.title,

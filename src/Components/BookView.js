@@ -1,4 +1,20 @@
-export function BookView({ children }) {
+import { useEffect } from "react";
+
+export function BookView({ bookToShow, children }) {
+  //changing tab title
+  useEffect(
+    function () {
+      if (!bookToShow) return;
+      document.title = "Wave bookclub | " + bookToShow.title;
+
+      // cleanup function
+      return function () {
+        document.title = "Wave bookclub";
+      };
+    },
+    [bookToShow]
+  );
+
   return (
     <div id="book-view" className="book-info">
       {children}

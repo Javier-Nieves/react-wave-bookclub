@@ -1,30 +1,31 @@
 import { useState, useEffect } from "react";
-
 import axios from "axios";
-import { SITE_URL } from "../config";
-import { CLASSIC_LIMIT } from "../config";
-import { countries, searchBooks } from "../helpers";
+
+import { SITE_URL, COUNTRIES_API, CLASSIC_LIMIT } from "../config";
+import { searchBooks } from "../helpers";
+import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
 import { Navbar, NavButton } from "./Navbar";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
 import Controls from "./Controls";
 import Switch from "./Switch";
 import Table from "./Table";
-import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
-
-// let initialBooks;
-// getInitialBooks();
-// let initialBooks = await getAllBooks();
-export const classicLimit = new Date().getFullYear() - 50;
+import Loader from "./Loader";
 
 export default function App() {
   const [books, setBooks] = useState([]);
+  const [countries, setCountries] = useState([]);
+
+  const [loadingBooks, setLoadingBooks] = useState(false);
+  const [loadingCountries, setLoadingCountries] = useState(false);
+
   const [searchResults, setSearchResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
   const defaultStyle =
     upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
+
   const [currentView, setCurrentView] = useState(
     defaultStyle
     // "history"
@@ -36,32 +37,51 @@ export default function App() {
   //getting initial books
   useEffect(function () {
     async function getAllBooks() {
-      //todo
+      setLoadingBooks(true);
       const res = await axios({
         method: "GET",
         url: `${SITE_URL}api/v1/books/`,
       });
-      // const res = await fetch(`${SITE_URL}api/v1/books/`);
-      // const data = await res.json();
-      // console.log("Data from DB: ", data);
-      // if (data.status === "success") {
-      //   setBooks(data.data.books);
-      // }
       if (res.data.status === "success") {
         setBooks(res.data.data.books);
       }
-      console.log(res);
+      setLoadingBooks(false);
     }
     getAllBooks();
+  }, []);
+
+  // getting initial countries list (for flags and book origin selector)
+  useEffect(function () {
+    async function getCountryList() {
+      // todo - catchAsync
+      try {
+        setLoadingCountries(true);
+        const res = await fetch(COUNTRIES_API);
+        const data = await res.json();
+        setCountries(
+          data.map((item) => {
+            if (item.name.common === "United States") item.name.common = "USA";
+            if (item.name.common === "United Kingdom") item.name.common = "UK";
+            return item;
+          })
+        );
+      } catch (err) {
+        console.error("Error in country list API", err.message);
+      } finally {
+        setLoadingCountries(false);
+      }
+    }
+    getCountryList();
   }, []);
 
   function handleShowBook(book) {
     setBookToShow(book);
     setCurrentView("book");
   }
+
   async function handleSearchBooks(title, page) {
+    // todo - catchAsync
     const { results, total } = await searchBooks(title, page);
-    // totalResults = total;
     setTotalResults(total);
     if (!results) return;
     setCurrentView("search");
@@ -112,7 +132,8 @@ export default function App() {
         <div className="main-right-part">
           <Switch currentView={currentView} onSwitchView={setCurrentView} />
 
-          {currentView !== "book" && (
+          {(loadingBooks || loadingCountries) && <Loader />}
+          {currentView !== "book" && !loadingBooks && !loadingCountries && (
             <Table
               books={
                 currentView === "search"
@@ -126,7 +147,7 @@ export default function App() {
           )}
 
           {currentView === "book" && (
-            <BookView>
+            <BookView bookToShow={bookToShow}>
               <BookTitle book={bookToShow} />
               <BookStats book={bookToShow} />
               <BookDescription book={bookToShow} />
@@ -137,7 +158,3 @@ export default function App() {
     </>
   );
 }
-
-// async function getInitialBooks() {
-//   initialBooks = await getAllBooks();
-// }

@@ -11,7 +11,7 @@ export function TableRow({ book, onChooseBook, tableType, countries }) {
       <td className="cl3" data-country={book.country}>
         <div className="flagContainer">
           <div>{book.country}</div>
-          <img src={bookCountry.flags.svg} className="smallFlag" alt="flag" />
+          <img src={bookCountry?.flags.svg} className="smallFlag" alt="flag" />
         </div>
       </td>
       <td className="cl4">{book.pages}</td>
