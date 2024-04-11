@@ -3,6 +3,7 @@ import { TableRow, TableRowYear, SearchRow } from "./TableRow";
 
 export default function Table({ books, onChooseBook, tableType, countries }) {
   let yearChange;
+  // console.log("books in table: ", books);
   return (
     <table id={`${tableType}Table`}>
       <thead>

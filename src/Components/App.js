@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-import { mockBooks } from "../booklist";
+import axios from "axios";
+import { SITE_URL } from "../config";
 import { CLASSIC_LIMIT } from "../config";
 import { countries, searchBooks } from "../helpers";
-import { getAllBooks } from "../model";
 import { Navbar, NavButton } from "./Navbar";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
@@ -15,11 +15,10 @@ import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
 // let initialBooks;
 // getInitialBooks();
 // let initialBooks = await getAllBooks();
-// console.log(resBooks);
 export const classicLimit = new Date().getFullYear() - 50;
 
 export default function App() {
-  const [books, setBooks] = useState(mockBooks);
+  const [books, setBooks] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [totalResults, setTotalResults] = useState(0);
   const [bookToShow, setBookToShow] = useState(null);
@@ -34,7 +33,27 @@ export default function App() {
     // "search"
   );
 
-  // setBooks(initialBooks);
+  //getting initial books
+  useEffect(function () {
+    async function getAllBooks() {
+      //todo
+      const res = await axios({
+        method: "GET",
+        url: `${SITE_URL}api/v1/books/`,
+      });
+      // const res = await fetch(`${SITE_URL}api/v1/books/`);
+      // const data = await res.json();
+      // console.log("Data from DB: ", data);
+      // if (data.status === "success") {
+      //   setBooks(data.data.books);
+      // }
+      if (res.data.status === "success") {
+        setBooks(res.data.data.books);
+      }
+      console.log(res);
+    }
+    getAllBooks();
+  }, []);
 
   function handleShowBook(book) {
     setBookToShow(book);
