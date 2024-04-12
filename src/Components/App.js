@@ -16,6 +16,7 @@ export default function App() {
   const [books, setBooks] = useState([]);
   const [countries, setCountries] = useState([]);
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loadingBooks, setLoadingBooks] = useState(false);
   const [loadingCountries, setLoadingCountries] = useState(false);
 
@@ -23,9 +24,9 @@ export default function App() {
   const [totalResults, setTotalResults] = useState(0);
   const [bookToShow, setBookToShow] = useState(null);
   const upcomingBook = books.find((book) => book.upcoming === true);
+
   const defaultStyle =
     upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
-
   const [currentView, setCurrentView] = useState(
     defaultStyle
     // "history"
@@ -34,7 +35,42 @@ export default function App() {
     // "search"
   );
 
-  //getting initial books
+  // checking user status
+  // todo - create isLoggedIn. UseEffect to check this on mount. Store club's name and create books with it
+  useEffect(function () {
+    async function checkLogin() {
+      console.log("checking...");
+      const res = await axios({
+        method: "GET",
+        url: `${SITE_URL}api/v1/users/logged-check`,
+      });
+      console.log("login check: ", res);
+    }
+    checkLogin();
+  }, []);
+
+  //! LOGIN!
+  // useEffect(function () {
+  //   async function login() {
+  //     const data = {
+  //       name: "wave",
+  //       password: "...you know",
+  //     };
+  //     const res = await axios({
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       url: `${SITE_URL}api/v1/users/login`,
+  //       credentials: "include",
+  //       data,
+  //     });
+  //     console.log("LOGIN!", res);
+  //   }
+  //   login();
+  // }, []);
+
+  // getting initial books
   useEffect(function () {
     async function getAllBooks() {
       setLoadingBooks(true);
