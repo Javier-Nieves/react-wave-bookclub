@@ -1,9 +1,15 @@
-export function TableRow({ book, onChooseBook, tableType, countries }) {
+import { useBooks } from "../Contexts/BooksContext";
+import { useCountries } from "../Contexts/CountriesContext";
+
+export function TableRow({ book }) {
+  const { showBook, currentView } = useBooks();
+  const { countries } = useCountries();
+
   const bookCountry = countries.find((c) => c.name.common === book.country);
   return (
     <tr
-      className={`table-row ${tableType}-body`}
-      onClick={() => onChooseBook(book)}
+      className={`table-row ${currentView}-body`}
+      onClick={() => showBook(book)}
     >
       <td className="cl0">{book.title}</td>
       <td className="cl1">{book.author}</td>
@@ -15,7 +21,7 @@ export function TableRow({ book, onChooseBook, tableType, countries }) {
         </div>
       </td>
       <td className="cl4">{book.pages}</td>
-      {tableType === "history" && <td className="cl5">{book.rating}</td>}
+      {currentView === "history" && <td className="cl5">{book.rating}</td>}
     </tr>
   );
 }
@@ -33,9 +39,10 @@ export function TableRowYear({ yearChange }) {
   );
 }
 
-export function SearchRow({ book, onChooseBook }) {
+export function SearchRow({ book }) {
+  const { showBook } = useBooks();
   return (
-    <tr className={`table-row modern-body`} onClick={() => onChooseBook(book)}>
+    <tr className={`table-row modern-body`} onClick={() => showBook(book)}>
       <td className="cl0">
         <img className="small-pic" src={book.image_link} alt="book cover" />
       </td>

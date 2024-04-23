@@ -1,24 +1,28 @@
-export default function Controls({ book, upcomingBook, books }) {
-  if (book.read)
+import { useBooks } from "../Contexts/BooksContext";
+
+export default function Controls() {
+  const { bookToShow, upcomingBook, books } = useBooks();
+
+  if (bookToShow.read)
     return (
       <>
-        <Cover book={book} />
-        <Rating rating={book.rating} />
+        <Cover image={bookToShow.image_link} />
+        <Rating rating={bookToShow.rating} />
       </>
     );
-  if (book.upcoming)
+  if (bookToShow.upcoming)
     return (
       <div className="control-group">
-        <Cover book={book} />
+        <Cover image={bookToShow.image_link} />
         <RateBook />
       </div>
     );
 
   return (
     <div className="control-group">
-      <Cover book={book} />
+      <Cover image={bookToShow.image_link} />
 
-      {books.some((b) => b === book) ? (
+      {books.some((b) => b === bookToShow) ? (
         <>
           <button className="remove-btn">Remove from the reading list</button>
           {!upcomingBook && <button className="next-btn">Next</button>}
@@ -30,14 +34,9 @@ export default function Controls({ book, upcomingBook, books }) {
   );
 }
 
-function Cover({ book }) {
+function Cover({ image }) {
   return (
-    <img
-      className="view-image"
-      src={book.image_link}
-      alt="Book Cover"
-      loading="lazy"
-    />
+    <img className="view-image" src={image} alt="Book Cover" loading="lazy" />
   );
 }
 

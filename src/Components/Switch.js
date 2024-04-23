@@ -1,4 +1,7 @@
-export default function Switch({ currentView, onSwitchView }) {
+import { useBooks } from "../Contexts/BooksContext";
+
+export default function Switch() {
+  const { setCurrentView, currentView } = useBooks();
   return (
     <div className="switch-container">
       {(currentView === "modern" || currentView === "classic") && (
@@ -6,7 +9,7 @@ export default function Switch({ currentView, onSwitchView }) {
           className="switch"
           style={{ backgroundImage: `url("img/${currentView}.png")` }}
           onClick={() =>
-            onSwitchView(currentView === "classic" ? "modern" : "classic")
+            setCurrentView(currentView === "classic" ? "modern" : "classic")
           }
         />
       )}

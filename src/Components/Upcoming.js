@@ -1,8 +1,11 @@
-export default function Upcoming({ upcomingBook, onChooseBook }) {
+import { useBooks } from "../Contexts/BooksContext";
+
+export default function Upcoming() {
+  const { upcomingBook, showBook } = useBooks();
   return (
     <div
       className="upcoming-book-container dataContainer"
-      onClick={() => upcomingBook && onChooseBook(upcomingBook)}
+      onClick={() => upcomingBook && showBook(upcomingBook)}
     >
       <div className="upcoming-container">
         <h1 id="upcoming-title">

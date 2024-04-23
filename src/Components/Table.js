@@ -1,68 +1,51 @@
+import { useBooks } from "../Contexts/BooksContext";
 import { CLASSIC_LIMIT } from "../config";
 import { TableRow, TableRowYear, SearchRow } from "./TableRow";
 
-export default function Table({ books, onChooseBook, tableType, countries }) {
+export default function Table({ searchResults }) {
+  const { books, currentView } = useBooks();
+
   let yearChange;
   // console.log("books in table: ", books);
   return (
-    <table id={`${tableType}Table`}>
+    <table id={`${currentView}Table`}>
       <thead>
-        <tr className={`${tableType}-head`}>
+        <tr className={`${currentView}-head`}>
           <th className="cl0 Up">Book</th>
-          {tableType === "search" && <th>Title</th>}
+          {currentView === "search" && <th>Title</th>}
           <th className="cl1 Up">Author</th>
-          {tableType !== "search" && (
+          {currentView !== "search" && (
             <>
               <th className="cl2 Up">Year</th>
               <th className="cl3 Up">Country</th>
               <th className="cl4 Up">Pages</th>
             </>
           )}
-          {tableType === "history" && <th className="cl5 Up">Rating</th>}
+          {currentView === "history" && <th className="cl5 Up">Rating</th>}
         </tr>
       </thead>
 
-      <tbody className={`${tableType}-table`}>
-        {tableType === "classic" &&
+      <tbody className={`${currentView}-table`}>
+        {currentView === "classic" &&
           books.map(
             (book) =>
               book.year < CLASSIC_LIMIT &&
-              !book.read && (
-                <TableRow
-                  book={book}
-                  onChooseBook={onChooseBook}
-                  key={book.bookid}
-                  tableType={tableType}
-                  countries={countries}
-                />
-              )
+              !book.read && <TableRow book={book} key={book.bookid} />
           )}
 
-        {tableType === "modern" &&
+        {currentView === "modern" &&
           books.map(
             (book) =>
               book.year > CLASSIC_LIMIT &&
-              !book.read && (
-                <TableRow
-                  book={book}
-                  onChooseBook={onChooseBook}
-                  key={book.bookid}
-                  tableType={tableType}
-                  countries={countries}
-                />
-              )
+              !book.read && <TableRow book={book} key={book.bookid} />
           )}
 
-        {tableType === "search" &&
-          books.map((book) => (
-            <SearchRow
-              book={book}
-              onChooseBook={onChooseBook}
-              key={book.bookid}
-            />
+        {currentView === "search" &&
+          searchResults.map((book) => (
+            <SearchRow book={book} key={book.bookid} />
           ))}
 
-        {tableType === "history" &&
+        {currentView === "history" &&
           books
             .sort((a, b) => new Date(b.meeting_date) - new Date(a.meeting_date))
             .map((book) => {
@@ -74,27 +57,13 @@ export default function Table({ books, onChooseBook, tableType, countries }) {
                 return (
                   <>
                     <TableRowYear yearChange={yearChange} key={yearChange} />
-                    <TableRow
-                      book={book}
-                      onChooseBook={onChooseBook}
-                      key={book.bookid}
-                      tableType={tableType}
-                      countries={countries}
-                    />
+                    <TableRow book={book} key={book.bookid} />
                   </>
                 );
               }
               yearChange = book.meeting_date?.slice(0, 4);
               // render just book row if it's from the same year
-              return (
-                <TableRow
-                  book={book}
-                  onChooseBook={onChooseBook}
-                  key={book.bookid}
-                  tableType={tableType}
-                  countries={countries}
-                />
-              );
+              return <TableRow book={book} key={book.bookid} />;
             })}
       </tbody>
     </table>

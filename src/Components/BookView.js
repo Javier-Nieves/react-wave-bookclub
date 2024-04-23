@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useBooks } from "../Contexts/BooksContext";
 
-export function BookView({ bookToShow, children }) {
+export function BookView({ children }) {
+  const { bookToShow } = useBooks();
   //changing tab title
   useEffect(
     function () {
@@ -22,19 +24,21 @@ export function BookView({ bookToShow, children }) {
   );
 }
 
-export function BookTitle({ book }) {
-  return <h1 className="view-title">{book.title}</h1>;
+export function BookTitle() {
+  const { bookToShow } = useBooks();
+  return <h1 className="view-title">{bookToShow.title}</h1>;
 }
 
-export function BookStats({ book }) {
+export function BookStats() {
+  const { bookToShow } = useBooks();
   return (
     <div className="book-info-top" style={{ gap: "10px" }}>
       <h2 className="view-author">
-        {book.author}
-        {book.year ? `, ${book.year}` : ""}
+        {bookToShow.author}
+        {bookToShow.year ? `, ${bookToShow.year}` : ""}
       </h2>
       <div className="book-info-top" style={{ gap: "10px" }}>
-        <div className="view-pages">Pages: {book.pages}</div>
+        <div className="view-pages">Pages: {bookToShow.pages}</div>
       </div>
       <button className="edit-btn">Edit</button>
       <button className="save-btn">Save</button>
@@ -42,11 +46,12 @@ export function BookStats({ book }) {
   );
 }
 
-export function BookDescription({ book }) {
+export function BookDescription() {
+  const { bookToShow } = useBooks();
   return (
     <div
       className="view-desc"
-      dangerouslySetInnerHTML={{ __html: book.desc }}
+      dangerouslySetInnerHTML={{ __html: bookToShow.desc }}
     />
   );
 }
