@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 
 import { SITE_URL, CLASSIC_LIMIT } from "../config";
+import { getSearchedBooks } from "../helpers";
 
 const BooksContext = createContext();
 
@@ -10,6 +11,8 @@ const initialState = {
   bookToShow: {},
   loadingBooks: false,
   upcomingBook: {},
+  searchResults: [],
+  totalResults: 0,
   currentView: "modern",
   defaultStyle: "modern",
   error: "",
@@ -39,6 +42,14 @@ function reducer(state, action) {
         bookToShow: action.payload,
         currentView: "book",
       };
+    case "search/completed":
+      return {
+        ...state,
+        loadingBooks: false,
+        currentView: "search",
+        totalResults: action.payload.total,
+        searchResults: action.payload.results,
+      };
     case "changeView":
       return { ...state, currentView: action.payload };
     case "rejected":
@@ -49,6 +60,9 @@ function reducer(state, action) {
 }
 
 function BooksProvider({ children }) {
+  // const [searchResults, setSearchResults] = useState([]);
+  // const [totalResults, setTotalResults] = useState(0);
+
   const [
     {
       books,
@@ -56,6 +70,8 @@ function BooksProvider({ children }) {
       loadingBooks,
       upcomingBook,
       currentView,
+      searchResults,
+      totalResults,
       defaultStyle,
       error,
     },
@@ -87,6 +103,13 @@ function BooksProvider({ children }) {
     getAllBooks();
   }, []);
 
+  async function searchBooks(title, page) {
+    dispatch({ type: "loading" });
+    const searchResults = await getSearchedBooks(title, page);
+    if (!searchResults) return;
+    dispatch({ type: "search/completed", payload: searchResults });
+  }
+
   function showBook(book) {
     console.log("calling for: ", book);
     dispatch({ type: "book/loaded", payload: book });
@@ -103,10 +126,13 @@ function BooksProvider({ children }) {
         loadingBooks,
         bookToShow,
         upcomingBook,
+        searchResults,
+        totalResults,
         currentView,
         defaultStyle,
         error,
         showBook,
+        searchBooks,
         changeView,
       }}
     >

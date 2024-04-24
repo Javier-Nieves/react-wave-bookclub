@@ -10,7 +10,7 @@ import { TIMEOUT_SEC, RES_PAGE, BOOK_API } from "./config.js";
 
 export const classicLimit = new Date().getFullYear() - 50;
 
-export async function searchBooks(title, page) {
+export async function getSearchedBooks(title, page) {
   try {
     // todo - if title contains several words - data is strange in pagination somehow
     // prettier-ignore

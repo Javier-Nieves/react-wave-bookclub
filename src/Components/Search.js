@@ -3,8 +3,8 @@ import { useState, useRef, useEffect } from "react";
 import { useBooks } from "../Contexts/BooksContext";
 import { RES_PAGE } from "../config";
 
-export default function Search({ totalResults, onSearchBooks }) {
-  const { currentView } = useBooks();
+export default function Search() {
+  const { currentView, totalResults, searchBooks } = useBooks();
 
   const [titleToSearch, setTitleToSearch] = useState("");
   const [page, setPage] = useState(1);
@@ -26,7 +26,7 @@ export default function Search({ totalResults, onSearchBooks }) {
 
   function searchHandler(e) {
     e.preventDefault();
-    onSearchBooks(titleToSearch, page);
+    searchBooks(titleToSearch, page);
     currentView !== "search" && setTitleToSearch("");
   }
 

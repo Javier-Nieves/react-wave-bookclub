@@ -2,8 +2,8 @@ import { useBooks } from "../Contexts/BooksContext";
 import { CLASSIC_LIMIT } from "../config";
 import { TableRow, TableRowYear, SearchRow } from "./TableRow";
 
-export default function Table({ searchResults }) {
-  const { books, currentView } = useBooks();
+export default function Table() {
+  const { books, currentView, searchResults } = useBooks();
 
   let yearChange;
   return (

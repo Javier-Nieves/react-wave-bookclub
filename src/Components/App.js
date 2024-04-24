@@ -1,9 +1,6 @@
-import { useState } from "react";
-
 import { useBooks } from "../Contexts/BooksContext";
 import { useCountries } from "../Contexts/CountriesContext";
 
-import { searchBooks } from "../helpers";
 import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
 import { Navbar, NavButton } from "./Navbar";
 import { Main, LeftColumn, RightColumn } from "./Main";
@@ -15,13 +12,10 @@ import Table from "./Table";
 import Loader from "./Loader";
 
 export default function App() {
-  const { currentView, loadingBooks, changeView } = useBooks();
+  const { currentView, loadingBooks } = useBooks();
   const { loadingCountries } = useCountries();
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const [searchResults, setSearchResults] = useState([]);
-  const [totalResults, setTotalResults] = useState(0);
 
   // checking user status
   // todo - create isLoggedIn. UseEffect to check this on mount. Store club's name and create books with it
@@ -58,15 +52,6 @@ export default function App() {
   //   login();
   // }, []);
 
-  async function handleSearchBooks(title, page) {
-    // todo - catchAsync
-    const { results, total } = await searchBooks(title, page);
-    setTotalResults(total);
-    if (!results) return;
-    changeView("search");
-    setSearchResults(results);
-  }
-
   return (
     <Main>
       <LeftColumn>
@@ -74,24 +59,19 @@ export default function App() {
           <NavButton>Reading List</NavButton>
           <NavButton linkTo="history">History</NavButton>
         </Navbar>
-
-        <Search onSearchBooks={handleSearchBooks} totalResults={totalResults} />
-
+        <Search />
         {(currentView === "modern" ||
           currentView === "classic" ||
           currentView === "history") && <Upcoming />}
-
         {currentView === "book" && <Controls />}
       </LeftColumn>
 
       <RightColumn>
         <Switch />
-
         {(loadingBooks || loadingCountries) && <Loader />}
         {currentView !== "book" && !loadingBooks && !loadingCountries && (
-          <Table searchResults={searchResults} />
+          <Table />
         )}
-
         {currentView === "book" && (
           <BookView>
             <BookTitle />
