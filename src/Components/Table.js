@@ -6,7 +6,6 @@ export default function Table({ searchResults }) {
   const { books, currentView } = useBooks();
 
   let yearChange;
-  // console.log("books in table: ", books);
   return (
     <table id={`${currentView}Table`}>
       <thead>

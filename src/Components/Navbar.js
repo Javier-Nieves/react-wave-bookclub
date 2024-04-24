@@ -5,12 +5,12 @@ export function Navbar({ children }) {
 }
 
 export function NavButton({ children, linkTo }) {
-  const { setCurrentView, defaultStyle } = useBooks();
+  const { changeView, defaultStyle } = useBooks();
   return (
     <button
       id="reading-link"
       className={`link brand-modern`}
-      onClick={() => setCurrentView(linkTo || defaultStyle)}
+      onClick={() => changeView(linkTo || defaultStyle)}
     >
       {children}
     </button>

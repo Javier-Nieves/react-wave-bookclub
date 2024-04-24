@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import { useBooks } from "../Contexts/BooksContext";
 import { useCountries } from "../Contexts/CountriesContext";
@@ -6,6 +6,7 @@ import { useCountries } from "../Contexts/CountriesContext";
 import { searchBooks } from "../helpers";
 import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
 import { Navbar, NavButton } from "./Navbar";
+import { Main, LeftColumn, RightColumn } from "./Main";
 import Search from "./Search";
 import Upcoming from "./Upcoming";
 import Controls from "./Controls";
@@ -14,7 +15,7 @@ import Table from "./Table";
 import Loader from "./Loader";
 
 export default function App() {
-  const { currentView, loadingBooks, setCurrentView } = useBooks();
+  const { currentView, loadingBooks, changeView } = useBooks();
   const { loadingCountries } = useCountries();
 
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -62,51 +63,43 @@ export default function App() {
     const { results, total } = await searchBooks(title, page);
     setTotalResults(total);
     if (!results) return;
-    setCurrentView("search");
+    changeView("search");
     setSearchResults(results);
   }
 
   return (
-    <>
-      <div
-        id="main-view"
-        style={{ backgroundImage: `url(/img/${currentView}-back.jpg)` }}
-      >
-        <div className="main-left-part">
-          <Navbar>
-            <NavButton>Reading List</NavButton>
-            <NavButton linkTo={"history"}>History</NavButton>
-          </Navbar>
+    <Main>
+      <LeftColumn>
+        <Navbar>
+          <NavButton>Reading List</NavButton>
+          <NavButton linkTo="history">History</NavButton>
+        </Navbar>
 
-          <Search
-            onSearchBooks={handleSearchBooks}
-            totalResults={totalResults}
-          />
+        <Search onSearchBooks={handleSearchBooks} totalResults={totalResults} />
 
-          {(currentView === "modern" ||
-            currentView === "classic" ||
-            currentView === "history") && <Upcoming />}
+        {(currentView === "modern" ||
+          currentView === "classic" ||
+          currentView === "history") && <Upcoming />}
 
-          {currentView === "book" && <Controls />}
-        </div>
+        {currentView === "book" && <Controls />}
+      </LeftColumn>
 
-        <div className="main-right-part">
-          <Switch />
+      <RightColumn>
+        <Switch />
 
-          {(loadingBooks || loadingCountries) && <Loader />}
-          {currentView !== "book" && !loadingBooks && !loadingCountries && (
-            <Table searchResults={searchResults} />
-          )}
+        {(loadingBooks || loadingCountries) && <Loader />}
+        {currentView !== "book" && !loadingBooks && !loadingCountries && (
+          <Table searchResults={searchResults} />
+        )}
 
-          {currentView === "book" && (
-            <BookView>
-              <BookTitle />
-              <BookStats />
-              <BookDescription />
-            </BookView>
-          )}
-        </div>
-      </div>
-    </>
+        {currentView === "book" && (
+          <BookView>
+            <BookTitle />
+            <BookStats />
+            <BookDescription />
+          </BookView>
+        )}
+      </RightColumn>
+    </Main>
   );
 }

@@ -3,6 +3,7 @@ import { useBooks } from "../Contexts/BooksContext";
 
 export function BookView({ children }) {
   const { bookToShow } = useBooks();
+  console.log("display: ", bookToShow);
   //changing tab title
   useEffect(
     function () {
