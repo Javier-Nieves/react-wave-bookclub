@@ -1,15 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 import { useCountries } from "../Contexts/CountriesContext";
 
 export function TableRow({ book }) {
-  const { showBook, currentView } = useBooks();
+  const { currentView } = useBooks();
   const { countries } = useCountries();
+  const navigate = useNavigate();
 
   const bookCountry = countries.find((c) => c.name.common === book.country);
+
   return (
     <tr
       className={`table-row ${currentView}-body`}
-      onClick={() => showBook(book)}
+      onClick={() => navigate(`/app/book/${book.bookid}`)}
     >
       <td className="cl0">{book.title}</td>
       <td className="cl1">{book.author}</td>
@@ -40,9 +43,13 @@ export function TableRowYear({ yearChange }) {
 }
 
 export function SearchRow({ book }) {
-  const { showBook } = useBooks();
+  const navigate = useNavigate();
+
   return (
-    <tr className={`table-row modern-body`} onClick={() => showBook(book)}>
+    <tr
+      className={`table-row modern-body`}
+      onClick={() => navigate(`/app/book/${book.bookid}`)}
+    >
       <td className="cl0">
         <img className="small-pic" src={book.image_link} alt="book cover" />
       </td>

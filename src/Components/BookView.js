@@ -1,9 +1,17 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 
-export function BookView({ children }) {
-  const { bookToShow } = useBooks();
-  console.log("display: ", bookToShow);
+export default function BookView() {
+  const id = useParams();
+  const { bookToShow, showBook } = useBooks();
+  useEffect(
+    function () {
+      showBook(id.id);
+    },
+    [id, showBook]
+  );
+
   //changing tab title
   useEffect(
     function () {
@@ -20,17 +28,19 @@ export function BookView({ children }) {
 
   return (
     <div id="book-view" className="book-info">
-      {children}
+      <BookTitle />
+      <BookStats />
+      <BookDescription />
     </div>
   );
 }
 
-export function BookTitle() {
+function BookTitle() {
   const { bookToShow } = useBooks();
   return <h1 className="view-title">{bookToShow.title}</h1>;
 }
 
-export function BookStats() {
+function BookStats() {
   const { bookToShow } = useBooks();
   return (
     <div className="book-info-top" style={{ gap: "10px" }}>
@@ -47,7 +57,7 @@ export function BookStats() {
   );
 }
 
-export function BookDescription() {
+function BookDescription() {
   const { bookToShow } = useBooks();
   return (
     <div

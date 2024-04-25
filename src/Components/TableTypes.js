@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import Switch from "./Switch";
 import ReadingTableTemplate from "./ReadingTableTemplate";
 import HistoryTableTemplate from "./HistoryTableTemplate";
-import SearchTableTemplate from "./HistoryTableTemplate";
+import SearchTableTemplate from "./SearchTableTemplate";
 import { useBooks } from "../Contexts/BooksContext";
 
 export function ReadingTable({ period = "classic" }) {
@@ -12,7 +12,7 @@ export function ReadingTable({ period = "classic" }) {
     function () {
       changeView(period);
     },
-    [changeView, period]
+    [period, changeView]
   );
   return (
     <>

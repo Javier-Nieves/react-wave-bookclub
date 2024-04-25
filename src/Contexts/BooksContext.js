@@ -1,8 +1,14 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useCallback,
+} from "react";
 import axios from "axios";
 
 import { SITE_URL, CLASSIC_LIMIT } from "../config";
-import { getSearchedBooks } from "../helpers";
+import { getSearchedBooks, getBook } from "../helpers";
 
 const BooksContext = createContext();
 
@@ -60,9 +66,6 @@ function reducer(state, action) {
 }
 
 function BooksProvider({ children }) {
-  // const [searchResults, setSearchResults] = useState([]);
-  // const [totalResults, setTotalResults] = useState(0);
-
   const [
     {
       books,
@@ -110,14 +113,14 @@ function BooksProvider({ children }) {
     dispatch({ type: "search/completed", payload: searchResults });
   }
 
-  function showBook(book) {
-    console.log("calling for: ", book);
+  const showBook = useCallback(async function showBook(id) {
+    const book = await getBook(id);
     dispatch({ type: "book/loaded", payload: book });
-  }
+  }, []);
 
-  function changeView(view) {
+  const changeView = useCallback(function changeView(view) {
     dispatch({ type: "changeView", payload: view });
-  }
+  }, []);
 
   return (
     <BooksContext.Provider

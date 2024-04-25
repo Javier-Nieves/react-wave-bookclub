@@ -22,6 +22,15 @@ export async function getSearchedBooks(title, page) {
     throw err;
   }
 }
+export async function getBook(id) {
+  try {
+    const response = await AJAX(`${BOOK_API}/${id}`);
+    const result = uniformedBook(response);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+}
 
 async function AJAX(url, uploadData = undefined, method = "GET") {
   try {
@@ -64,4 +73,19 @@ function makeUniformed(data) {
     rating: null,
     meeting_date: null,
   }));
+}
+
+function uniformedBook(item) {
+  return {
+    bookid: item?.id,
+    title: item.volumeInfo?.title,
+    author: item.volumeInfo?.authors?.[0] || "-",
+    desc: item.volumeInfo?.description,
+    image_link: item.volumeInfo?.imageLinks?.smallThumbnail || "img/club2.png",
+    pages: item.volumeInfo?.pageCount,
+    read: false,
+    upcoming: false,
+    rating: null,
+    meeting_date: null,
+  };
 }
