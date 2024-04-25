@@ -1,6 +1,6 @@
 import { useBooks } from "../Contexts/BooksContext";
 
-function Main({ children }) {
+export default function Main({ children }) {
   const { currentView } = useBooks();
   return (
     <div
@@ -11,11 +11,3 @@ function Main({ children }) {
     </div>
   );
 }
-function LeftColumn({ children }) {
-  return <div className="main-left-part">{children}</div>;
-}
-function RightColumn({ children }) {
-  return <div className="main-right-part">{children}</div>;
-}
-
-export { Main, LeftColumn, RightColumn };

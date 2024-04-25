@@ -1,20 +1,12 @@
-import { useBooks } from "../Contexts/BooksContext";
-import { useCountries } from "../Contexts/CountriesContext";
+import { Suspense, lazy } from "react";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { BookView, BookTitle, BookStats, BookDescription } from "./BookView";
-import { Navbar, NavButton } from "./Navbar";
-import { Main, LeftColumn, RightColumn } from "./Main";
-import Search from "./Search";
-import Upcoming from "./Upcoming";
-import Controls from "./Controls";
-import Switch from "./Switch";
-import Table from "./Table";
-import Loader from "./Loader";
+import AppLayout from "../Pages/AppLayout";
+import NotFound from "../Pages/NotFound";
+import { ReadingTable, HistoryTable } from "./TableTypes";
+import SearchTable from "./SearchTableTemplate";
 
 export default function App() {
-  const { currentView, loadingBooks } = useBooks();
-  const { loadingCountries } = useCountries();
-
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // checking user status
@@ -53,33 +45,20 @@ export default function App() {
   // }, []);
 
   return (
-    <Main>
-      <LeftColumn>
-        <Navbar>
-          <NavButton>Reading List</NavButton>
-          <NavButton linkTo="history">History</NavButton>
-        </Navbar>
-        <Search />
-        {(currentView === "modern" ||
-          currentView === "classic" ||
-          currentView === "history") && <Upcoming />}
-        {currentView === "book" && <Controls />}
-      </LeftColumn>
-
-      <RightColumn>
-        <Switch />
-        {(loadingBooks || loadingCountries) && <Loader />}
-        {currentView !== "book" && !loadingBooks && !loadingCountries && (
-          <Table />
-        )}
-        {currentView === "book" && (
-          <BookView>
-            <BookTitle />
-            <BookStats />
-            <BookDescription />
-          </BookView>
-        )}
-      </RightColumn>
-    </Main>
+    <BrowserRouter>
+      {/* <Suspense fallback={<Loader />}> */}
+      <Routes>
+        <Route path="app" element={<AppLayout />}>
+          <Route path="reading" element={<h1>Main List</h1>} />
+          <Route path="classic" element={<ReadingTable period="classic" />} />
+          <Route path="modern" element={<ReadingTable period="modern" />} />
+          <Route path="history" element={<HistoryTable />} />
+          <Route path="search" element={<SearchTable />} />
+          <Route path="book/:id" element={<h1>History</h1>} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {/* </Suspense> */}
+    </BrowserRouter>
   );
 }

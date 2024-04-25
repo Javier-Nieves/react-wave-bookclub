@@ -1,12 +1,14 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useBooks } from "../Contexts/BooksContext";
 import { RES_PAGE } from "../config";
 
 export default function Search() {
-  const { currentView, totalResults, searchBooks } = useBooks();
-
   const [titleToSearch, setTitleToSearch] = useState("");
+  const { currentView, totalResults, searchBooks } = useBooks();
+  const navigate = useNavigate();
+
   const [page, setPage] = useState(1);
   const searchInput = useRef(null);
 
@@ -28,6 +30,7 @@ export default function Search() {
     e.preventDefault();
     searchBooks(titleToSearch, page);
     currentView !== "search" && setTitleToSearch("");
+    navigate("/app/search");
   }
 
   return (

@@ -151,7 +151,6 @@ h2 {
   margin-right: 70px;
 }
 .switch {
-  /* background-image: url("classic2.png"); */
   background-size: cover;
   background-color: transparent;
   width: 10vw;
@@ -851,10 +850,6 @@ option {
   color: blue;
   font-size: 40px;
   cursor: pointer;
-}
-option:hover,
-.active {
-  background-color: lightblue;
 }
 
 @media screen and (max-width: 800px) {

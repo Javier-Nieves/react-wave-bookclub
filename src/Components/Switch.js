@@ -1,23 +1,18 @@
-import { useBooks } from "../Contexts/BooksContext";
+import { NavLink } from "react-router-dom";
 
-export default function Switch() {
-  const { changeView, currentView } = useBooks();
+export default function Switch({ period = undefined }) {
   return (
     <div className="switch-container">
-      {(currentView === "modern" || currentView === "classic") && (
-        <button
+      {(period === "modern" || period === "classic") && (
+        <NavLink
+          to={period === "classic" ? "/app/modern" : "/app/classic"}
           className="switch"
-          style={{ backgroundImage: `url("img/${currentView}.png")` }}
-          onClick={() =>
-            changeView(currentView === "classic" ? "modern" : "classic")
-          }
+          style={{ backgroundImage: `url("/img/${period}.png")` }}
         />
       )}
-      {(currentView === "history" ||
-        currentView === "search" ||
-        currentView === "book") && (
+      {period !== "classic" && period !== "modern" && (
         <img
-          src={"img/club2.png"}
+          src={"/img/club2.png"}
           className="history__wave-logo"
           alt="wave-logo"
         />
