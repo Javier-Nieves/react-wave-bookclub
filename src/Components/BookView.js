@@ -1,13 +1,18 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
+import Switch from "./Switch";
+import Loader from "./Loader";
 
 export default function BookView() {
-  const id = useParams();
-  const { bookToShow, showBook } = useBooks();
+  const { id } = useParams();
+  console.log(id);
+  const { bookToShow, showBook, loadingBooks } = useBooks();
+
   useEffect(
     function () {
-      showBook(id.id);
+      showBook(id);
+      console.log(id);
     },
     [id, showBook]
   );
@@ -26,12 +31,17 @@ export default function BookView() {
     [bookToShow]
   );
 
+  if (loadingBooks) return;
+
   return (
-    <div id="book-view" className="book-info">
-      <BookTitle />
-      <BookStats />
-      <BookDescription />
-    </div>
+    <>
+      <Switch />
+      <div id="book-view" className="book-info">
+        <BookTitle />
+        <BookStats />
+        <BookDescription />
+      </div>
+    </>
   );
 }
 

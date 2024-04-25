@@ -1,11 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 
 export default function Upcoming() {
-  const { upcomingBook, showBook } = useBooks();
+  const { upcomingBook } = useBooks();
+  const navigate = useNavigate();
   return (
     <div
       className="upcoming-book-container dataContainer"
-      onClick={() => upcomingBook && showBook(upcomingBook)}
+      onClick={() =>
+        upcomingBook && navigate(`/app/book/${upcomingBook.bookid}`)
+      }
     >
       <div className="upcoming-container">
         <h1 id="upcoming-title">

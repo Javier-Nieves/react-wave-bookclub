@@ -39,7 +39,6 @@ function reducer(state, action) {
         books: action.payload,
         upcomingBook,
         defaultStyle,
-        currentView: defaultStyle,
       };
     case "book/loaded":
       return {
@@ -114,8 +113,17 @@ function BooksProvider({ children }) {
   }
 
   const showBook = useCallback(async function showBook(id) {
-    const book = await getBook(id);
-    dispatch({ type: "book/loaded", payload: book });
+    dispatch({ type: "loading" });
+    // if (id === bookToShow.id) return;
+    try {
+      const book = await getBook(id);
+      dispatch({ type: "book/loaded", payload: book });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while fetching city data!",
+      });
+    }
   }, []);
 
   const changeView = useCallback(function changeView(view) {

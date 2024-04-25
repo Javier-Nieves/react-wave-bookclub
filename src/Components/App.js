@@ -1,6 +1,7 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
+import { useBooks } from "../Contexts/BooksContext";
 import AppLayout from "../Pages/AppLayout";
 import NotFound from "../Pages/NotFound";
 import { ReadingTable, HistoryTable, SearchTable } from "./TableTypes";
@@ -8,6 +9,7 @@ import Book from "./BookView";
 import Loader from "../Components/Loader";
 
 export default function App() {
+  const { defaultStyle } = useBooks();
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // checking user status
@@ -50,7 +52,7 @@ export default function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="app" element={<AppLayout />}>
-            <Route path="reading" element={<h1>Main List</h1>} />
+            {/* <Route index element={<Navigate replace to="modern" />} /> */}
             <Route path="classic" element={<ReadingTable period="classic" />} />
             <Route path="modern" element={<ReadingTable period="modern" />} />
             <Route path="history" element={<HistoryTable />} />
