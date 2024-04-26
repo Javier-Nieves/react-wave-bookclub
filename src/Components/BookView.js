@@ -2,17 +2,15 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 import Switch from "./Switch";
-import Loader from "./Loader";
 
 export default function BookView() {
   const { id } = useParams();
-  console.log(id);
   const { bookToShow, showBook, loadingBooks } = useBooks();
+  // console.log("showing: ", bookToShow);
 
   useEffect(
     function () {
       showBook(id);
-      console.log(id);
     },
     [id, showBook]
   );
@@ -31,7 +29,7 @@ export default function BookView() {
     [bookToShow]
   );
 
-  if (loadingBooks) return;
+  if (loadingBooks || !bookToShow) return;
 
   return (
     <>

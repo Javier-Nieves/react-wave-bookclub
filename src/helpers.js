@@ -15,7 +15,7 @@ export async function getSearchedBooks(title, page) {
     // todo - if title contains several words - data is strange in pagination somehow
     // prettier-ignore
     const response = await AJAX(`${BOOK_API}?q=+intitle:${title}&startIndex=${(+page - 1) * +RES_PAGE}&maxResults=${RES_PAGE}`);
-    const results = makeUniformed(response);
+    const results = makeUniformedList(response);
     const total = response.totalItems;
     return { results, total };
   } catch (err) {
@@ -25,14 +25,14 @@ export async function getSearchedBooks(title, page) {
 export async function getBook(id) {
   try {
     const response = await AJAX(`${BOOK_API}/${id}`);
-    const result = uniformedBook(response);
+    const result = makeUniformedBook(response);
     return result;
   } catch (err) {
     throw err;
   }
 }
 
-async function AJAX(url, uploadData = undefined, method = "GET") {
+export async function AJAX(url, uploadData = undefined, method = "GET") {
   try {
     let fetchPro;
     if (uploadData) {
@@ -60,7 +60,7 @@ function timeout(s) {
   });
 }
 
-function makeUniformed(data) {
+function makeUniformedList(data) {
   return data.items?.map((item) => ({
     bookid: item?.id,
     title: item.volumeInfo?.title,
@@ -75,7 +75,7 @@ function makeUniformed(data) {
   }));
 }
 
-function uniformedBook(item) {
+export function makeUniformedBook(item) {
   return {
     bookid: item?.id,
     title: item.volumeInfo?.title,

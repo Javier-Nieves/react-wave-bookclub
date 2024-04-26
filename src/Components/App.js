@@ -52,7 +52,7 @@ export default function App() {
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="app" element={<AppLayout />}>
-            {/* <Route index element={<Navigate replace to="modern" />} /> */}
+            <Route index element={<Navigate replace to={defaultStyle} />} />
             <Route path="classic" element={<ReadingTable period="classic" />} />
             <Route path="modern" element={<ReadingTable period="modern" />} />
             <Route path="history" element={<HistoryTable />} />

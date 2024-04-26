@@ -7,14 +7,14 @@ import {
 } from "react";
 import axios from "axios";
 
-import { SITE_URL, CLASSIC_LIMIT } from "../config";
-import { getSearchedBooks, getBook } from "../helpers";
+import { SITE_URL, CLASSIC_LIMIT, BOOK_API } from "../config";
+import { getSearchedBooks, AJAX, makeUniformedBook } from "../helpers";
 
 const BooksContext = createContext();
 
 const initialState = {
   books: [],
-  bookToShow: {},
+  bookToShow: undefined,
   loadingBooks: false,
   upcomingBook: {},
   searchResults: [],
@@ -40,11 +40,21 @@ function reducer(state, action) {
         upcomingBook,
         defaultStyle,
       };
+    // case "bookInDB":
+    //   const bookToShow = state.books.find(
+    //     (book) => book.bookid === action.payload
+    //   );
+    //   return {
+    //     ...state,
+    //     bookToShow,
+    //     loadingBooks: bookToShow === undefined,
+    //     currentView: "book",
+    //   };
     case "book/loaded":
       return {
         ...state,
-        loadingBooks: false,
         bookToShow: action.payload,
+        loadingBooks: false,
         currentView: "book",
       };
     case "search/completed":
@@ -56,7 +66,7 @@ function reducer(state, action) {
         searchResults: action.payload.results,
       };
     case "changeView":
-      return { ...state, currentView: action.payload };
+      return { ...state, currentView: action.payload, bookToShow: undefined };
     case "rejected":
       return { ...state, loadingBooks: false, error: action.payload };
     default:
@@ -80,7 +90,7 @@ function BooksProvider({ children }) {
     dispatch,
   ] = useReducer(reducer, initialState);
 
-  // getting initial books
+  // 1) getting initial books
   useEffect(function () {
     async function getAllBooks() {
       dispatch({ type: "loading" });
@@ -105,6 +115,7 @@ function BooksProvider({ children }) {
     getAllBooks();
   }, []);
 
+  // 2) Books from the search field
   async function searchBooks(title, page) {
     dispatch({ type: "loading" });
     const searchResults = await getSearchedBooks(title, page);
@@ -112,19 +123,30 @@ function BooksProvider({ children }) {
     dispatch({ type: "search/completed", payload: searchResults });
   }
 
-  const showBook = useCallback(async function showBook(id) {
-    dispatch({ type: "loading" });
-    // if (id === bookToShow.id) return;
-    try {
-      const book = await getBook(id);
-      dispatch({ type: "book/loaded", payload: book });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "Error while fetching city data!",
-      });
-    }
-  }, []);
+  // 3) One Book data is received. Also checking if it's already in the DB
+  const showBook = useCallback(
+    async function showBook(id) {
+      if (bookToShow !== undefined) return;
+      dispatch({ type: "loading" });
+      try {
+        // looking for the book in the DB:
+        const bookInDb = books.find((book) => book.bookid === id);
+        let bookFromApi;
+        // if it's not in the DB - look in the web api
+        if (bookInDb === undefined) {
+          const response = await AJAX(`${BOOK_API}/${id}`);
+          bookFromApi = makeUniformedBook(response);
+        }
+        dispatch({ type: "book/loaded", payload: bookInDb || bookFromApi });
+      } catch {
+        dispatch({
+          type: "rejected",
+          payload: "Error while fetching book data!",
+        });
+      }
+    },
+    [bookToShow, books]
+  );
 
   const changeView = useCallback(function changeView(view) {
     dispatch({ type: "changeView", payload: view });

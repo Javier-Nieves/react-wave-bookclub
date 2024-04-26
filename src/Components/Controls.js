@@ -3,6 +3,8 @@ import { useBooks } from "../Contexts/BooksContext";
 export default function Controls() {
   const { bookToShow, upcomingBook, books } = useBooks();
 
+  if (!bookToShow) return;
+
   if (bookToShow.read)
     return (
       <>

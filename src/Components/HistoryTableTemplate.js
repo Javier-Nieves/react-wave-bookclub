@@ -3,7 +3,6 @@ import { TableRow, TableRowYear } from "./TableRow";
 
 export default function HistoryTable() {
   const { books } = useBooks();
-
   let yearChange;
   return (
     <table id={`historyTable`}>
