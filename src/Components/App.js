@@ -4,10 +4,13 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 
 import { ReadingTable, HistoryTable, SearchTable } from "./TableTypes";
+import ProtectedRoutes from "../Pages/ProtectedRoutes";
 import AppLayout from "../Pages/AppLayout";
+import HomePage from "../Pages/HomePage";
+import Login from "../Pages/Login";
 import NotFound from "../Pages/NotFound";
 import Book from "./BookView";
-import Loader from "../Components/Loader";
+import Loader from "./Loader";
 
 export default function App() {
   const { defaultStyle } = useBooks();
@@ -16,7 +19,15 @@ export default function App() {
     <BrowserRouter>
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path="app" element={<AppLayout />}>
+          <Route index element={<HomePage />} />
+          <Route
+            path="app"
+            element={
+              <ProtectedRoutes>
+                <AppLayout />
+              </ProtectedRoutes>
+            }
+          >
             <Route index element={<Navigate replace to={defaultStyle} />} />
             <Route path="classic" element={<ReadingTable period="classic" />} />
             <Route path="modern" element={<ReadingTable period="modern" />} />
@@ -25,6 +36,7 @@ export default function App() {
             <Route path="search" element={<SearchTable />} />
             <Route path="book/:id" element={<Book />} />
           </Route>
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

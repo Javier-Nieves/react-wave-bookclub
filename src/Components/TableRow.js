@@ -3,6 +3,7 @@ import { useBooks } from "../Contexts/BooksContext";
 import { useCountries } from "../Contexts/CountriesContext";
 
 export function TableRow({ book }) {
+  console.log(book);
   const { currentView } = useBooks();
   const { countries } = useCountries();
   const navigate = useNavigate();
@@ -11,7 +12,9 @@ export function TableRow({ book }) {
 
   return (
     <tr
-      className={`table-row ${currentView}-body`}
+      className={`table-row ${currentView}-body ${
+        book.upcoming ? "upcom-book" : ""
+      }`}
       onClick={() => navigate(`/app/book/${book.bookid}`)}
     >
       <td className="cl0">{book.title}</td>

@@ -1,10 +1,8 @@
 import { useAuth } from "../Contexts/AuthContext";
+import Button from "./Button";
 
 function User() {
-  const { isLoggedIn, user, login, logout } = useAuth();
-
-  //! !!!LOGIN
-  function handleLogin() {}
+  const { isLoggedIn, user, logout } = useAuth();
 
   return (
     <div className="enter-container">
@@ -14,15 +12,10 @@ function User() {
             <div className="name-text">
               {user.at(0).toUpperCase() + user.slice(1)} Bookclub
             </div>
-            <button className="exit-btn" onClick={logout}>
+            <Button type="enter-btn" onClick={logout}>
               Logout
-            </button>
+            </Button>
           </>
-        )}
-        {!isLoggedIn && (
-          <button className="enter-btn" onClick={handleLogin}>
-            Enter your Bookclub
-          </button>
         )}
       </div>
     </div>

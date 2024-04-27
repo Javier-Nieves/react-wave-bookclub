@@ -1,0 +1,14 @@
+.loaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loadScreenGif {
+  width: 30%;
+  /* margin: 20vh 38vw; */
+}
+
+.loadScreenGifSmall {
+  width: 15vw;
+}

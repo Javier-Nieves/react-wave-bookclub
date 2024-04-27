@@ -1,10 +1,46 @@
 :root {
   overscroll-behavior: none;
-  --color-lightest: #fff4e6;
   --color-light: #ffe8cc;
-  --color-medium: #ffa94d;
+  --color-dark-gold: #bb9302;
+  --color-light-gold: #ddc137;
   --color-dark: #ff922b;
+  --color-bright: yellow;
+  --color-pale: rgba(154, 154, 154, 0.614);
 }
+
+/* ::placeholder {
+  color: var(--color-light);
+  opacity: 1;
+} */
+
+input,
+.searchField,
+.meetingField,
+.newTitleInput,
+.newAuthorInput,
+.newPagesInput {
+  width: 20vw;
+  color: whitesmoke;
+  font-size: 22px;
+  font-family: didot;
+  text-align: center;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 4px;
+  margin: 10px;
+  background-color: transparent;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+input:focus,
+.searchField:focus,
+.meetingField:focus {
+  outline: none;
+  box-shadow: 0 0 10px #f9f9f9d2;
+}
+
+/*!!!!!! --------------------- save above, correct below  ----------------------  */
+
 #main-view {
   background-size: cover;
   background-repeat: no-repeat;
@@ -12,6 +48,11 @@
   overflow: hidden;
   width: 100vw;
   min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(36, 42, 46, 0.6),
+      rgba(36, 42, 46, 0.6)
+    ),
+    url("/public/img/book-back.jpg");
 }
 
 input::-webkit-outer-spin-button,
@@ -49,7 +90,7 @@ html {
 }
 
 body {
-  background-color: rgb(45, 45, 45);
+  background-color: var(--color-light);
   margin: 0;
 }
 
@@ -107,6 +148,7 @@ h2 {
 .brand-modern:hover {
   animation: flicker 1s infinite alternate;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .container {
@@ -230,29 +272,7 @@ h2 {
   align-items: center;
   margin: 8px 0 8px 0;
 }
-.searchField,
-.meetingField,
-.newTitleInput,
-.newAuthorInput,
-.newPagesInput {
-  width: 20vw;
-  color: whitesmoke;
-  font-size: 22px;
-  font-family: didot;
-  text-align: center;
-  border: 1px solid gray;
-  border-radius: 8px;
-  padding: 4px;
-  margin: 10px;
-  background-color: transparent;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-.searchField:focus,
-.meetingField:focus {
-  outline: none;
-  box-shadow: 0 0 10px #f9f9f9d2;
-}
+
 .meetingField {
   width: 10vw;
   font-size: 20px;
@@ -277,84 +297,7 @@ h2 {
   font-size: 3vh;
   color: rgba(201, 201, 201, 0.94);
 }
-.searchBtn,
-.add-btn,
-.remove-btn,
-.rate-btn,
-.meetingBtn,
-.modal-btn,
-.next-btn,
-.enter-btn,
-.exit-btn,
-.edit-btn,
-.pagination-btn,
-.welcome-btn,
-.example-enter {
-  color: rgba(201, 201, 201, 0.94);
-  font-size: 18px;
-  font-family: didot;
-  border: 1px solid gray;
-  border-radius: 8px;
-  padding: 4px;
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.searchBtn {
-  width: 10vw;
-}
-.pagination-btn,
-.pagination-btn_null {
-  width: 6vw;
-}
-.add-btn,
-.rate-btn {
-  justify-content: center;
-  align-items: center;
-}
-.rate-btn,
-.next-btn,
-.welcome-btn {
-  margin-top: 13px;
-  width: 180px;
-  height: 100px;
-  font-size: 40px;
-  font-family: Copperplate, Didot, cursive;
-  padding: 15px;
-  background-image: url("rate1.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: black;
-  background-color: transparent;
-  border: 1px solid yellow;
-  -webkit-text-stroke: 1px rgb(247, 247, 247);
-  transition: transform 0.5s ease-in-out;
-}
-.goodBtn {
-  border: 1px solid yellow;
-  background-color: rgba(9, 9, 9, 0.435);
-  transition: transform 0.5s ease-in-out;
-  font-size: 20px;
-}
-.modal-btn {
-  width: 9vw;
-  height: 6vw;
-  border: 1px solid yellow;
-  font-size: 21px;
-  margin-right: 15px;
-}
-.edit-btn,
-.save-btn {
-  color: black;
-  border: 1px solid yellow;
-  padding: 0px 18px 0px 18px;
-  height: 6vh;
-}
-.save-btn {
-  display: none;
-  background-color: rgba(3, 3, 3, 0.877);
-  color: whitesmoke;
-}
+
 .enter-container,
 .example-enter {
   position: absolute;
@@ -373,50 +316,6 @@ h2 {
   align-items: center;
   justify-content: center;
   /* margin-top: 3vh; */
-}
-.enter-btn,
-.exit-btn,
-.pagination-btn {
-  border: 1px solid yellow;
-  transition: transform 0.5s ease-in-out;
-}
-
-.rate-btn:hover,
-.next-btn:hover,
-.welcome-btn:hover {
-  transform: scale(1.1);
-  cursor: pointer;
-  box-shadow: 0 0 15px yellow;
-}
-.searchBtn:hover,
-.add-btn:hover,
-.remove-btn:hover,
-.meetingBtn:hover,
-.modal-btn:hover {
-  background-color: rgba(255, 255, 255, 0.273);
-  box-shadow: 0 0 5px #f9f9f9d2;
-  cursor: pointer;
-}
-.goodBtn:hover {
-  background-color: rgba(5, 8, 1, 0.91);
-  box-shadow: 0 0 55px #f9f9f9d2;
-  transform: scale(1.1);
-  cursor: pointer;
-}
-.enter-btn:hover,
-.exit-btn:hover,
-.edit-btn:hover,
-.pagination-btn:hover,
-.save-btn:hover,
-.example-enter:hover {
-  background-color: rgba(254, 236, 39, 0.806);
-  box-shadow: 0 0 55px #f9f9f9d2;
-  transform: scale(1.1);
-  color: #050801;
-  cursor: pointer;
-}
-.edit-btn:hover {
-  transform: none;
 }
 
 /* ? book view */
@@ -518,10 +417,7 @@ h2 {
   border-radius: 15px;
   width: 30%;
 }
-.load-screen-gif {
-  width: 30%;
-  /* margin: 20vh 38vw; */
-}
+
 dialog {
   display: flex;
   flex-direction: column;
@@ -541,23 +437,7 @@ dialog[open] {
 dialog::backdrop {
   background-color: rgba(0, 0, 0, 0.6);
 }
-.load-screen-gif-small {
-  width: 15vw;
-}
-.welcome-text {
-  margin: 0;
-  text-align: center;
-  color: whitesmoke;
-}
-.welcome-text > * {
-  font-size: 3.5vh;
-  margin: 2vh;
-}
-.welcome-title {
-  color: rgba(254, 236, 39, 0.806);
-  font-size: 13vh;
-  margin: 30px;
-}
+
 #modaladd,
 #modalremove,
 #modalrate,
