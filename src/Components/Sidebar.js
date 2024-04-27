@@ -4,10 +4,12 @@ import Search from "./Search";
 import Upcoming from "./Upcoming";
 import Controls from "./Controls";
 
+import styles from "./Main.module.css";
+
 export default function Sidebar() {
   const { currentView } = useBooks();
   return (
-    <div className="main-left-part">
+    <div className={styles.mainLeftPart}>
       <Navbar />
       <Search />
       {(currentView === "modern" ||

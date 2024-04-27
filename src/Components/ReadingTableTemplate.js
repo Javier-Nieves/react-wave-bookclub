@@ -2,12 +2,14 @@ import { useBooks } from "../Contexts/BooksContext";
 import { CLASSIC_LIMIT } from "../config";
 import { TableRow } from "./TableRow";
 
+import styles from "./Tables.module.css";
+
 export default function Table({ period }) {
   const { books } = useBooks();
   return (
-    <table id={`${period}Table`}>
+    <table id={styles[`${period}Table`]}>
       <thead>
-        <tr className={`${period}-head`}>
+        <tr className={styles[`${period}Head`]}>
           <th className="cl0 Up">Book</th>
           <th className="cl1 Up">Author</th>
           <th className="cl2 Up">Year</th>
@@ -16,7 +18,7 @@ export default function Table({ period }) {
         </tr>
       </thead>
 
-      <tbody className={`${period}-table`}>
+      <tbody className={styles[`${period}Table`]}>
         {period === "classic" &&
           books.map(
             (book) =>

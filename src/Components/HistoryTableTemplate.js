@@ -1,13 +1,15 @@
 import { useBooks } from "../Contexts/BooksContext";
 import { TableRow, TableRowYear } from "./TableRow";
 
+import styles from "./Tables.module.css";
+
 export default function HistoryTable() {
   const { books } = useBooks();
   let yearChange;
   return (
-    <table id={`historyTable`}>
+    <table>
       <thead>
-        <tr className={`history-head`}>
+        <tr className={styles.historyHead}>
           <th className="cl0 Up">Book</th>
           <th className="cl1 Up">Author</th>
           <th className="cl2 Up">Year</th>

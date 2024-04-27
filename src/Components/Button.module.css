@@ -17,7 +17,7 @@ button {
   font-family: didot;
   border: 1px solid gray;
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
   background-color: transparent;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

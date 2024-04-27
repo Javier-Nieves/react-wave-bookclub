@@ -6,6 +6,11 @@ import { useAuth } from "../Contexts/AuthContext";
 import styles from "./HomePage.module.css";
 import Button from "../Components/Button";
 
+// const TestUser = {
+//   name: "wave",
+//   password: "",
+// };
+
 function Login() {
   const { login, isLoggedIn } = useAuth();
   const navigate = useNavigate();

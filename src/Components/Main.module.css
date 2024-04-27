@@ -1,0 +1,29 @@
+.mainView {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  gap: 70px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.mainLeftPart,
+.mainRightPart {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.mainLeftPart {
+  background-color: rgba(30, 30, 30, 0.804);
+  padding-bottom: 50px;
+  position: fixed;
+  width: var(--sidebar-width);
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+.mainRightPart {
+  margin-left: calc(var(--sidebar-width) + 3%);
+  margin-right: 70px;
+}

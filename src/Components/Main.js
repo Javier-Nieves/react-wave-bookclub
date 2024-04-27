@@ -1,10 +1,12 @@
 import { useBooks } from "../Contexts/BooksContext";
 
+import styles from "./Main.module.css";
+
 export default function Main({ children }) {
   const { currentView } = useBooks();
   return (
     <div
-      id="main-view"
+      className={styles.mainView}
       style={{
         backgroundImage: ` linear-gradient(
         rgba(36, 42, 46, 0.5),

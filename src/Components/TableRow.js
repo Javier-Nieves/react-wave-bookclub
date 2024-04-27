@@ -2,8 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
 import { useCountries } from "../Contexts/CountriesContext";
 
+import styles from "./Tables.module.css";
+
 export function TableRow({ book }) {
-  console.log(book);
   const { currentView } = useBooks();
   const { countries } = useCountries();
   const navigate = useNavigate();
@@ -12,8 +13,8 @@ export function TableRow({ book }) {
 
   return (
     <tr
-      className={`table-row ${currentView}-body ${
-        book.upcoming ? "upcom-book" : ""
+      className={`${styles[currentView + "Body"]} ${
+        book.upcoming ? styles.upcomBook : ""
       }`}
       onClick={() => navigate(`/app/book/${book.bookid}`)}
     >
@@ -35,7 +36,7 @@ export function TableRow({ book }) {
 export function TableRowYear({ yearChange, book }) {
   return (
     <>
-      <tr className="yearRow">
+      <tr className={styles.yearRow}>
         <td>{yearChange}</td>
         <td />
         <td />
@@ -53,7 +54,7 @@ export function SearchRow({ book }) {
 
   return (
     <tr
-      className={`table-row modern-body`}
+      className={styles.modernBody}
       onClick={() => navigate(`/app/book/${book.bookid}`)}
     >
       <td className="cl0">
