@@ -29,16 +29,19 @@ export function TableRow({ book }) {
   );
 }
 
-export function TableRowYear({ yearChange }) {
+export function TableRowYear({ yearChange, book }) {
   return (
-    <tr className="yearRow">
-      <td>{yearChange}</td>
-      <td />
-      <td />
-      <td />
-      <td />
-      <td />
-    </tr>
+    <>
+      <tr className="yearRow">
+        <td>{yearChange}</td>
+        <td />
+        <td />
+        <td />
+        <td />
+        <td />
+      </tr>
+      <TableRow book={book} />
+    </>
   );
 }
 

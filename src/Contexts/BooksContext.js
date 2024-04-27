@@ -40,16 +40,6 @@ function reducer(state, action) {
         upcomingBook,
         defaultStyle,
       };
-    // case "bookInDB":
-    //   const bookToShow = state.books.find(
-    //     (book) => book.bookid === action.payload
-    //   );
-    //   return {
-    //     ...state,
-    //     bookToShow,
-    //     loadingBooks: bookToShow === undefined,
-    //     currentView: "book",
-    //   };
     case "book/loaded":
       return {
         ...state,

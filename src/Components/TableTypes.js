@@ -14,6 +14,7 @@ export function ReadingTable({ period = "classic" }) {
     },
     [period, changeView]
   );
+
   return (
     <>
       <Switch period={period} />

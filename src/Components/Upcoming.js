@@ -22,7 +22,7 @@ export default function Upcoming() {
         )}
         <img
           id="upcoming-pic"
-          src={upcomingBook?.image_link || "img/club2.png"}
+          src={upcomingBook?.image_link || "/img/club2.png"}
           loading="lazy"
           alt="upcoming book"
         />

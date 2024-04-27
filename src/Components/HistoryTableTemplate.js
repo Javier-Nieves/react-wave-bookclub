@@ -25,12 +25,13 @@ export default function HistoryTable() {
             if (!yearChange) yearChange = book.meeting_date?.slice(0, 4);
             if (book.meeting_date?.slice(0, 4) !== yearChange) {
               yearChange = book.meeting_date?.slice(0, 4);
-              // render Year Row and Book row together
+              // render Year Row and last Book row from that year together
               return (
-                <>
-                  <TableRowYear yearChange={yearChange} key={yearChange} />
-                  <TableRow book={book} key={book.bookid} />
-                </>
+                <TableRowYear
+                  yearChange={yearChange}
+                  key={yearChange}
+                  book={book}
+                />
               );
             }
             yearChange = book.meeting_date?.slice(0, 4);
