@@ -44,7 +44,7 @@ export function TableRowYear({ yearChange, book }) {
         <td />
         <td />
       </tr>
-      <TableRow book={book} />
+      <TableRow book={book} key={book.bookid} />
     </>
   );
 }

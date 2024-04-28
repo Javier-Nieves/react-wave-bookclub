@@ -16,7 +16,7 @@ const initialState = {
   books: [],
   bookToShow: undefined,
   loadingBooks: false,
-  upcomingBook: {},
+  upcomingBook: undefined,
   searchResults: [],
   totalResults: 0,
   currentView: "modern",
@@ -32,7 +32,7 @@ function reducer(state, action) {
       // prettier-ignore
       const upcomingBook = action.payload.find((book) => book.upcoming === true);
       // prettier-ignore
-      const defaultStyle = upcomingBook.year < CLASSIC_LIMIT ? "modern" : "classic";
+      const defaultStyle = upcomingBook?.year < CLASSIC_LIMIT ? "modern" : "classic";
       return {
         ...state,
         loadingBooks: false,
@@ -46,6 +46,19 @@ function reducer(state, action) {
         bookToShow: action.payload,
         loadingBooks: false,
         currentView: "book",
+      };
+    case "book/rated":
+      return {
+        ...state,
+        bookToShow: null,
+        loadingBooks: false,
+        upcomingBook: null,
+      };
+    case "book/next":
+      return {
+        ...state,
+        upcomingBook: { ...state.bookToShow, upcoming: true },
+        loadingBooks: false,
       };
     case "search/completed":
       return {
@@ -113,7 +126,7 @@ function BooksProvider({ children }) {
     dispatch({ type: "search/completed", payload: searchResults });
   }
 
-  // 3) One Book data is received. Also checking if it's already in the DB
+  // 3) Specific Book data is received. Also checking if it's already in the DB
   const showBook = useCallback(
     async function showBook(id) {
       if (bookToShow !== undefined) return;
@@ -138,6 +151,54 @@ function BooksProvider({ children }) {
     [bookToShow, books]
   );
 
+  // Rate Book
+  async function rateBook(rating) {
+    if (!upcomingBook) return;
+    dispatch({ type: "loading" });
+    try {
+      const data = {
+        read: true,
+        rating,
+        upcoming: false,
+        meeting_date: upcomingBook.meeting_date
+          ? upcomingBook.meeting_date
+          : Date.now(),
+      };
+      await axios({
+        method: "PATCH",
+        url: `${SITE_URL}api/v1/books/${upcomingBook.bookid}`,
+        data,
+      });
+      dispatch({ type: "book/rated", payload: rating });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while rating book!",
+      });
+    }
+  }
+
+  // Choose Next Book
+  async function nextBook() {
+    if (!bookToShow || upcomingBook) return;
+    dispatch({ type: "loading" });
+    try {
+      const data = { upcoming: true };
+      await axios({
+        method: "PATCH",
+        url: `${SITE_URL}api/v1/books/${bookToShow.bookid}`,
+        data,
+      });
+      console.log();
+      dispatch({ type: "book/next" });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while rating book!",
+      });
+    }
+  }
+
   const changeView = useCallback(function changeView(view) {
     dispatch({ type: "changeView", payload: view });
   }, []);
@@ -155,6 +216,8 @@ function BooksProvider({ children }) {
         defaultStyle,
         error,
         showBook,
+        rateBook,
+        nextBook,
         searchBooks,
         changeView,
       }}

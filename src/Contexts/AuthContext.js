@@ -12,7 +12,7 @@ import { SITE_URL } from "../config";
 const AuthContext = createContext();
 
 const initialState = {
-  user: null,
+  user: {},
   isLoggedIn: false,
   loadingLogin: false,
   error: null,
@@ -37,7 +37,10 @@ function reducer(state, action) {
     case "userIsAuthenticated":
       return {
         ...state,
-        user: action.payload.data.currentUser.name,
+        user: {
+          name: action.payload.data?.currentUser.name,
+          id: action.payload.data?.currentUser._id,
+        },
         isLoggedIn: true,
         loadingLogin: false,
       };
@@ -110,7 +113,7 @@ function AuthProvider({ children }) {
       if (res.data.status === "success") {
         dispatch({
           type: "login",
-          payload: { user: name, jwt: res.data.token },
+          payload: { user: res.data.data.user, jwt: res.data.token },
         });
       }
     },

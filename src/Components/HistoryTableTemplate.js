@@ -31,7 +31,7 @@ export default function HistoryTable() {
               return (
                 <TableRowYear
                   yearChange={yearChange}
-                  key={yearChange}
+                  key={yearChange || Date.now()}
                   book={book}
                 />
               );

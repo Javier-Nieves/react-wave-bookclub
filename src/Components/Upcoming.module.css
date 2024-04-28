@@ -29,8 +29,8 @@
   );
 }
 
-.upcomingBookContainer:hover {
-  background-color: rgba(210, 210, 210, 0.582);
+.modernBack:hover,
+.classicBack:hover {
   cursor: pointer;
   transform: translate(5px, 5px);
 }
