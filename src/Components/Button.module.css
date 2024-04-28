@@ -1,10 +1,6 @@
 /* .searchBtn,
-.add-btn,
-.remove-btn,
-.rate-btn,
 .meetingBtn,
 .modal-btn,
-.next-btn,
 .enter-btn,
 .edit-btn,
 .pagination-btn,
@@ -29,13 +25,13 @@ button {
 .pagination-btn_null {
   width: 6vw;
 }
-.add-btn,
-.rate-btn {
+.addBtn,
+.rateBtn {
   justify-content: center;
   align-items: center;
 }
-.rate-btn,
-.next-btn,
+.rateBtn,
+.nextBtn,
 .welcome-btn,
 .register-btn {
   margin-top: 13px;
@@ -91,8 +87,6 @@ button {
 }
 
 button:hover,
-.rate-btn:hover,
-.next-btn:hover,
 .welcome-btn:hover {
   text-decoration: none;
   transform: scale(1.05);
@@ -100,8 +94,8 @@ button:hover,
   box-shadow: 0 0 15px var(--color-bright);
 }
 .searchBtn:hover,
-.add-btn:hover,
-.remove-btn:hover,
+.addBtn:hover,
+.removeBtn:hover,
 .meetingBtn:hover,
 .modal-btn:hover {
   background-color: rgba(255, 255, 255, 0.273);

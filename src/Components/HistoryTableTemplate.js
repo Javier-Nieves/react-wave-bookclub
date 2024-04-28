@@ -19,7 +19,7 @@ export default function HistoryTable() {
         </tr>
       </thead>
 
-      <tbody className={`history-table`}>
+      <tbody className={styles.historyTable}>
         {books
           .sort((a, b) => new Date(b.meeting_date) - new Date(a.meeting_date))
           .map((book) => {

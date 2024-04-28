@@ -1,20 +1,22 @@
 import { useBooks } from "../Contexts/BooksContext";
 import { SearchRow } from "./TableRow";
 
+import styles from "./Tables.module.css";
+
 export default function SearchTable() {
   const { searchResults } = useBooks();
 
   return (
-    <table id={`searchTable`}>
+    <table>
       <thead>
-        <tr className={`search-head`}>
+        <tr className={styles.searchHead}>
           <th className="cl0 Up">Book</th>
           <th>Title</th>
           <th className="cl1 Up">Author</th>
         </tr>
       </thead>
 
-      <tbody className={`search-table`}>
+      <tbody className={styles.searchTable}>
         {searchResults.map((book) => (
           <SearchRow book={book} key={book.bookid} />
         ))}

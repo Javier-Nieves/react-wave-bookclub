@@ -99,6 +99,15 @@ td {
   color: black;
   cursor: pointer;
 }
+.smallPic {
+  width: 60px;
+}
+.searchResultBig {
+  font-size: 1.3rem;
+}
+.searchResultSmall {
+  font-size: 1.2rem;
+}
 .yearRow {
   width: 100%;
 }

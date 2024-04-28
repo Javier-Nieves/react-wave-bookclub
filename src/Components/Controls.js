@@ -1,4 +1,7 @@
 import { useBooks } from "../Contexts/BooksContext";
+import Button from "./Button";
+
+import styles from "./Main.module.css";
 
 export default function Controls() {
   const { bookToShow, upcomingBook, books } = useBooks();
@@ -14,23 +17,23 @@ export default function Controls() {
     );
   if (bookToShow.upcoming)
     return (
-      <div className="control-group">
+      <div className={styles.controlGroup}>
         <Cover image={bookToShow.image_link} />
         <RateBook />
       </div>
     );
 
   return (
-    <div className="control-group">
+    <div className={styles.controlGroup}>
       <Cover image={bookToShow.image_link} />
 
       {books.some((b) => b === bookToShow) ? (
         <>
-          <button className="remove-btn">Remove from the reading list</button>
-          {!upcomingBook && <button className="next-btn">Next</button>}
+          <Button type="removeBtn">Remove from the reading list</Button>
+          {!upcomingBook && <Button type="nextBtn">Next</Button>}
         </>
       ) : (
-        <button className="add-btn">To the Reading List</button>
+        <Button type="addBtn">To the Reading List</Button>
       )}
     </div>
   );
@@ -38,24 +41,29 @@ export default function Controls() {
 
 function Cover({ image }) {
   return (
-    <img className="view-image" src={image} alt="Book Cover" loading="lazy" />
+    <img
+      className={styles.viewImage}
+      src={image}
+      alt="Book Cover"
+      loading="lazy"
+    />
   );
 }
 
 function Rating({ rating }) {
   return (
     <>
-      <div className="upcom-text">Club's rating:</div>
-      <button className="view-rating">{rating}</button>
+      <div className={styles.upcomText}>Club's rating:</div>
+      <button className={styles.viewRating}>{rating}</button>
     </>
   );
 }
 
 function RateBook() {
   return (
-    <div className="rate-btn-container">
-      <div className="upcom-text">Reading now</div>
-      <button className="rate-btn">Rate</button>
+    <div>
+      <div className={styles.upcomText}>Reading now</div>
+      <Button type="rateBtn">Rate</Button>
     </div>
   );
 }

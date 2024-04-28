@@ -54,14 +54,18 @@ export function SearchRow({ book }) {
 
   return (
     <tr
-      className={styles.modernBody}
+      className={styles.historyBody}
       onClick={() => navigate(`/app/book/${book.bookid}`)}
     >
       <td className="cl0">
-        <img className="small-pic" src={book.image_link} alt="book cover" />
+        <img
+          className={styles.smallPic}
+          src={book.image_link}
+          alt="book cover"
+        />
       </td>
-      <td className="searchResultBig">{book.title}</td>
-      <td className="searchResultSmall">{book.author}</td>
+      <td className={styles.searchResultBig}>{book.title}</td>
+      <td className={styles.searchResultSmall}>{book.author}</td>
     </tr>
   );
 }

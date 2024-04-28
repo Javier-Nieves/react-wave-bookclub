@@ -9,8 +9,8 @@ export default function Main({ children }) {
       className={styles.mainView}
       style={{
         backgroundImage: ` linear-gradient(
-        rgba(36, 42, 46, 0.5),
-        rgba(36, 42, 46, 0.5)
+        rgba(55, 55, 55, 0.7),
+        rgba(55, 55, 55, 0.7)
       ),
       url(/img/${currentView}-back.jpg)`,
       }}
