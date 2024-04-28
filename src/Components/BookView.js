@@ -20,7 +20,6 @@ export default function BookView() {
     function () {
       if (!bookToShow) return;
       document.title = "Wave bookclub | " + bookToShow.title;
-
       // cleanup function
       return function () {
         document.title = "Wave bookclub";

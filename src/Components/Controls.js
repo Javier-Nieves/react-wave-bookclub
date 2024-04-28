@@ -9,7 +9,7 @@ export default function Controls() {
     return (
       <>
         <Cover image={bookToShow.image_link} />
-        <Rating rating={bookToShow.rating} />
+        {bookToShow.rating && <Rating rating={bookToShow.rating} />}
       </>
     );
   if (bookToShow.upcoming)

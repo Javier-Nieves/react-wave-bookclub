@@ -24,6 +24,7 @@
   left: 0;
 }
 .mainRightPart {
-  margin-left: calc(var(--sidebar-width) + 3%);
+  width: calc(100% - var(--sidebar-width));
+  margin-left: calc(var(--sidebar-width) + 70px);
   margin-right: 70px;
 }

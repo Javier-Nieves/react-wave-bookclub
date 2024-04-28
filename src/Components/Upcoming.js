@@ -1,15 +1,25 @@
 import { useNavigate } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
+import { CLASSIC_LIMIT } from "../config";
 
 import styles from "./Upcoming.module.css";
 
 export default function Upcoming() {
   const { upcomingBook } = useBooks();
   const navigate = useNavigate();
-  console.log("length: ", upcomingBook?.title?.length);
+
+  const isModern = upcomingBook?.year > CLASSIC_LIMIT;
+  let fontSize;
+  if (isModern)
+    fontSize = upcomingBook?.title?.length > 15 ? "2.5rem" : "3.5rem";
+  else fontSize = upcomingBook?.title?.length > 15 ? "2rem" : "3rem";
+  const fontFamily = isModern ? "var(--font-modern)" : "var(--font-classic)";
   return (
     <div
-      className={styles.upcomingBookContainer}
+      className={isModern ? styles.modernBack : styles.classicBack}
+      style={{
+        fontFamily,
+      }}
       onClick={() =>
         upcomingBook && navigate(`/app/book/${upcomingBook.bookid}`)
       }
@@ -18,7 +28,8 @@ export default function Upcoming() {
         <h1
           className={styles.upcomingTitle}
           style={{
-            fontSize: upcomingBook?.title?.length > 12 ? "2.5rem" : "3rem",
+            fontSize,
+            fontFamily,
           }}
         >
           {upcomingBook?.title || "Choose the next book"}
@@ -26,7 +37,7 @@ export default function Upcoming() {
         {upcomingBook && (
           <h3
             style={{
-              fontSize: upcomingBook?.author?.length > 12 ? "1.3rem" : "2rem",
+              fontSize: upcomingBook?.author?.length > 12 ? "1.5rem" : "2rem",
             }}
           >
             {upcomingBook?.author}, {upcomingBook.year}
