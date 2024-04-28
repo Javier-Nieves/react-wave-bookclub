@@ -102,6 +102,16 @@ td {
 .smallPic {
   width: 60px;
 }
+.flagContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.smallFlag {
+  width: 23px;
+  height: fit-content;
+  margin-left: 7px;
+}
 .searchResultBig {
   font-size: 1.3rem;
 }

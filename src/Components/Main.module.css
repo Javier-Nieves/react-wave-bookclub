@@ -9,8 +9,8 @@
 }
 .mainLeftPart,
 .mainRightPart {
-  text-align: center;
   display: flex;
+  text-align: center;
   align-items: center;
   flex-direction: column;
 }
@@ -60,7 +60,8 @@
   color: rgba(201, 201, 201, 0.94);
 }
 
-.modalFormRate {
+.modalFormRate,
+.modalFormAdd {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,4 +72,14 @@
   font-size: 26px;
   padding: 18px 10px;
   color: rgb(255, 221, 0);
+}
+
+.countryContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flag {
+  width: 100px;
+  margin-right: 20px;
 }

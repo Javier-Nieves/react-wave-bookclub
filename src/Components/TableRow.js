@@ -22,9 +22,13 @@ export function TableRow({ book }) {
       <td className="cl1">{book.author}</td>
       <td className="cl2">{book.year}</td>
       <td className="cl3" data-country={book.country}>
-        <div className="flagContainer">
+        <div className={styles.flagContainer}>
           <div>{book.country}</div>
-          <img src={bookCountry?.flags.svg} className="smallFlag" alt="flag" />
+          <img
+            src={bookCountry?.flags.svg}
+            className={styles.smallFlag}
+            alt="flag"
+          />
         </div>
       </td>
       <td className="cl4">{book.pages}</td>

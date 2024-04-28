@@ -393,16 +393,7 @@ h2 {
 .Down:hover {
   cursor: pointer;
 }
-.flagContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.smallFlag {
-  width: 1.5vw;
-  height: fit-content;
-  margin-left: 7px;
-}
+
 #modalmessage {
   display: none;
   position: fixed;

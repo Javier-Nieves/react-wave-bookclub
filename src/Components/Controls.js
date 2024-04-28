@@ -1,18 +1,34 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useBooks } from "../Contexts/BooksContext";
+import { useCountries } from "../Contexts/CountriesContext";
+import { useAuth } from "../Contexts/AuthContext";
 import { RateBookBlock } from "./RateBookBlock";
 import Button from "./Button";
+import Dialog from "./Dialog";
 
 import styles from "./Main.module.css";
 
 export default function Controls() {
-  const { bookToShow, upcomingBook, books, nextBook } = useBooks();
+  const { bookToShow, upcomingBook, books, nextBook, addBook } = useBooks();
+  const { user } = useAuth();
+  const { countries } = useCountries();
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
+  const [country, setCountry] = useState("");
+  const [year, setYear] = useState("");
   const navigate = useNavigate();
+  const selectedCountry = countries.find((c) => c.name.common === country);
 
   if (!bookToShow) return;
 
   async function handleNextBook() {
     await nextBook();
+    navigate("/app");
+  }
+
+  async function handleAddBook() {
+    const newBook = { ...bookToShow, country, year, club: user.id };
+    await addBook(newBook);
     navigate("/app");
   }
 
@@ -32,22 +48,70 @@ export default function Controls() {
     );
 
   return (
-    <div className={styles.controlGroup}>
-      <Cover image={bookToShow.image_link} />
+    <>
+      {dialogIsOpen && (
+        <Dialog title="Book details:" onClick={() => setDialogIsOpen(false)}>
+          <form
+            className={styles.modalFormAdd}
+            onClick={(e) => e.stopPropagation()}
+            onSubmit={handleAddBook}
+          >
+            <input
+              type="number"
+              className={styles.searchField}
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+              placeholder="Year of publication"
+              required
+            />
 
-      {books.some((b) => b === bookToShow) ? (
-        <>
-          <Button type="removeBtn">Remove from the reading list</Button>
-          {!upcomingBook && (
-            <Button type="nextBtn" onClick={handleNextBook}>
-              Next
-            </Button>
-          )}
-        </>
-      ) : (
-        <Button type="addBtn">To the Reading List</Button>
+            <input
+              type="text"
+              className={styles.searchField}
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
+              list="countryList"
+              placeholder="Country"
+              required
+            />
+
+            <datalist id="countryList">
+              {countries.map((country) => (
+                <option>{country.name.common}</option>
+              ))}
+            </datalist>
+            <div className={styles.countryContainer}>
+              {selectedCountry && (
+                <img
+                  className={styles.flag}
+                  src={selectedCountry.flags.svg}
+                  alt={selectedCountry.flags.alt}
+                />
+              )}
+              <Button type="addBtn">Add book</Button>
+            </div>
+          </form>
+        </Dialog>
       )}
-    </div>
+      <div className={styles.controlGroup}>
+        <Cover image={bookToShow.image_link} />
+
+        {books.some((b) => b === bookToShow) ? (
+          <>
+            <Button type="removeBtn">Remove from the reading list</Button>
+            {!upcomingBook && (
+              <Button type="nextBtn" onClick={handleNextBook}>
+                Next
+              </Button>
+            )}
+          </>
+        ) : (
+          <Button type="addBtn" onClick={() => setDialogIsOpen(true)}>
+            To the Reading List
+          </Button>
+        )}
+      </div>
+    </>
   );
 }
 

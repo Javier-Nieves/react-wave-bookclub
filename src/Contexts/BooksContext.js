@@ -60,6 +60,12 @@ function reducer(state, action) {
         upcomingBook: { ...state.bookToShow, upcoming: true },
         loadingBooks: false,
       };
+    case "book/add":
+      return {
+        ...state,
+        books: [...state.books, action.payload],
+        loadingBooks: false,
+      };
     case "search/completed":
       return {
         ...state,
@@ -189,12 +195,29 @@ function BooksProvider({ children }) {
         url: `${SITE_URL}api/v1/books/${bookToShow.bookid}`,
         data,
       });
-      console.log();
       dispatch({ type: "book/next" });
     } catch {
       dispatch({
         type: "rejected",
-        payload: "Error while rating book!",
+        payload: "Error while selecting next book!",
+      });
+    }
+  }
+
+  // Add new Book
+  async function addBook(data) {
+    dispatch({ type: "loading" });
+    try {
+      await axios({
+        method: "POST",
+        url: `${SITE_URL}api/v1/books`,
+        data,
+      });
+      dispatch({ type: "book/add", payload: data });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while adding new book!",
       });
     }
   }
@@ -218,6 +241,7 @@ function BooksProvider({ children }) {
         showBook,
         rateBook,
         nextBook,
+        addBook,
         searchBooks,
         changeView,
       }}
