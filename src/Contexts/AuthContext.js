@@ -76,15 +76,16 @@ function AuthProvider({ children }) {
             data: { token: jwt },
           });
           if (res.data.status === "success") {
+            console.log("user is logged in");
             dispatch({
               type: "userIsAuthenticated",
               payload: res.data,
             });
           }
-        } catch {
+        } catch (err) {
           dispatch({
             type: "rejected",
-            payload: "Error while checking login!",
+            payload: `Error while checking login! ${err.message}`,
           });
         }
       }

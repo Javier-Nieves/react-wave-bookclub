@@ -13,6 +13,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 8.6,
     meeting_date: "2023-07-02",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "D0yFEAAAQBAJ",
@@ -28,6 +29,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "efmpEAAAQBAJ",
@@ -43,6 +45,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "7lA8EAAAQBAJ",
@@ -58,6 +61,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "D27LEAAAQBAJ",
@@ -73,6 +77,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "ub6UEAAAQBAJ",
@@ -88,6 +93,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "SgQHEAAAQBAJ",
@@ -103,6 +109,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.6,
     meeting_date: "2023-03-11",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "-emBDwAAQBAJ",
@@ -118,6 +125,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "tKhwEAAAQBAJ",
@@ -133,6 +141,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "Aq4VEAAAQBAJ",
@@ -148,6 +157,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 5,
     meeting_date: "2022-02-04",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "E9UJEAAAQBAJ",
@@ -163,6 +173,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-07-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "2uKyCAAAQBAJ",
@@ -178,6 +189,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.3,
     meeting_date: "2023-04-30",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "9mkUEAAAQBAJ",
@@ -189,10 +201,11 @@ export const mockBooks = [
     image_link:
       "http://books.google.com/books/publisher/content?id=9mkUEAAAQBAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE72T1Ft-gEpYLM0rj68gE0SlFVkSie0o_GmsLTRNa2v1mqIhkTyBTGWM8UvzzTBR5pDraACVIB7WDgrjS4jxEooRbg8bDEvjclZIv8biItJ-uZ2mTv8W1069z-JqHWUlqPcUNFPx&source=gbs_api",
     year: 2018,
-    read: false,
-    upcoming: true,
-    rating: null,
+    read: true,
+    upcoming: false,
+    rating: 4.3,
     meeting_date: "2024-04-13",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "QzYREAAAQBAJ",
@@ -208,6 +221,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.4,
     meeting_date: "2023-11-11",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "rGoUEAAAQBAJ",
@@ -223,6 +237,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.8,
     meeting_date: "2023-09-23",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "cDpDDwAAQBAJ",
@@ -238,6 +253,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "mJVGDwAAQBAJ",
@@ -253,6 +269,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "Hs0aDQAAQBAJ",
@@ -268,6 +285,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "oD2ADQAAQBAJ",
@@ -283,6 +301,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "5LRuEAAAQBAJ",
@@ -298,6 +317,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-03-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "gB1iBAAAQBAJ",
@@ -313,6 +333,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-10-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "xOaKAwAAQBAJ",
@@ -328,6 +349,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "owFsCQAAQBAJ",
@@ -343,6 +365,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "4O_wCwAAQBAJ",
@@ -358,6 +381,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-05-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "fUKfBQAAQBAJ",
@@ -373,6 +397,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "kZf6AAAAQBAJ",
@@ -388,6 +413,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "EcWpCQAAQBAJ",
@@ -403,6 +429,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-07-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "GwtnngEACAAJ",
@@ -418,6 +445,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "StB7CwAAQBAJ",
@@ -433,6 +461,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "II0vo0iEicAC",
@@ -448,6 +477,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "UZulAAAAQBAJ",
@@ -463,6 +493,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-07-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "eOJoAwAAQBAJ",
@@ -478,6 +509,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-03-03",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "wHp7DwAAQBAJ",
@@ -493,6 +525,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-02-13",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "riLbsgEACAAJ",
@@ -508,6 +541,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "zyKGdUxCYXQC",
@@ -523,6 +557,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "AmbDDwAAQBAJ",
@@ -538,6 +573,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "QmUUEAAAQBAJ",
@@ -553,6 +589,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6,
     meeting_date: "2022-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "PRmTzwEACAAJ",
@@ -568,6 +605,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "lo0cCD_eRygC",
@@ -583,6 +621,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "E8V-DwAAQBAJ",
@@ -598,6 +637,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-11-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "OT8-DQAAQBAJ",
@@ -613,6 +653,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-09-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "15kJEAAAQBAJ",
@@ -628,6 +669,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.6,
     meeting_date: "2022-10-23",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "aVnJDQAAQBAJ",
@@ -643,6 +685,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.8,
     meeting_date: "2024-01-27",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "6BHDCgAAQBAJ",
@@ -658,6 +701,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "vy8sWCIBxGcC",
@@ -673,6 +717,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.2,
     meeting_date: "2022-12-18",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "K-gRAgAAQBAJ",
@@ -688,6 +733,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-07-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "7741DwAAQBAJ",
@@ -703,6 +749,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 5.8,
     meeting_date: "2022-09-04",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "btMzEAAAQBAJ",
@@ -718,6 +765,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "1zcHCwAAQBAJ",
@@ -733,6 +781,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "WY1IAgAAQBAJ",
@@ -748,6 +797,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.4,
     meeting_date: "2022-06-18",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "_x4Wgyr_fnAC",
@@ -763,6 +813,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "kwvQBQAAQBAJ",
@@ -778,6 +829,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "IT6vfrb5fNcC",
@@ -793,6 +845,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "8-fRBQAAQBAJ",
@@ -808,6 +861,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "bFQUEAAAQBAJ",
@@ -823,6 +877,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "OBUsDQAAQBAJ",
@@ -838,6 +893,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-11-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "S3joDwAAQBAJ",
@@ -853,6 +909,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-09-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "NJbaDwAAQBAJ",
@@ -868,6 +925,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "P6vmsgEACAAJ",
@@ -883,6 +941,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "JuYbEAAAQBAJ",
@@ -898,6 +957,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "HbB_EAAAQBAJ",
@@ -913,6 +973,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "j-6KDwAAQBAJ",
@@ -928,6 +989,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "NjS-DwAAQBAJ",
@@ -943,6 +1005,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "tSbWMu_-D5AC",
@@ -958,6 +1021,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.3,
     meeting_date: "2023-10-14",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "wPmNJnIo8cEC",
@@ -973,6 +1037,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "i4xINwAACAAJ",
@@ -987,6 +1052,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "lb4TDgAAQBAJ",
@@ -1002,6 +1068,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "TemmAAAAQBAJ",
@@ -1017,6 +1084,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 8.3,
     meeting_date: "2023-01-28",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "AJ0OAQAAMAAJ",
@@ -1033,6 +1101,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "GXgqDwAAQBAJ",
@@ -1048,6 +1117,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-06-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "72iabSl3b78C",
@@ -1063,6 +1133,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.7,
     meeting_date: "2023-05-28",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "IwywDY4P6gsC",
@@ -1078,6 +1149,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "w2plDwAAQBAJ",
@@ -1093,6 +1165,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6,
     meeting_date: "2023-08-12",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "CivKDwAAQBAJ",
@@ -1108,6 +1181,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "Is1KEAAAQBAJ",
@@ -1123,6 +1197,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.7,
     meeting_date: "2022-04-23",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "TLMsDgAAQBAJ",
@@ -1138,6 +1213,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "UTpMEAAAQBAJ",
@@ -1153,6 +1229,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-03-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "T8A0DwAAQBAJ",
@@ -1168,6 +1245,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "5EGrAgAAQBAJ",
@@ -1183,6 +1261,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "PXsgOHVTwjUC",
@@ -1198,6 +1277,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-03-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "C4-MEAAAQBAJ",
@@ -1213,6 +1293,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "enreBgAAQBAJ",
@@ -1228,6 +1309,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.2,
     meeting_date: "2024-03-02",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "lHFsDwAAQBAJ",
@@ -1243,6 +1325,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "IeiaEAAAQBAJ",
@@ -1258,6 +1341,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.8,
     meeting_date: "2023-04-09",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "vaQlEAAAQBAJ",
@@ -1273,6 +1357,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "jNDyOUZOhyAC",
@@ -1288,6 +1373,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "7QszEAAAQBAJ",
@@ -1303,6 +1389,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "QgZNDwAAQBAJ",
@@ -1318,6 +1405,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "xSLJaT_mFIoC",
@@ -1333,6 +1421,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "ncicDwAAQBAJ",
@@ -1348,6 +1437,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "AZBNDwAAQBAJ",
@@ -1363,6 +1453,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 8.4,
     meeting_date: "2022-10-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "bewpDAAAQBAJ",
@@ -1378,6 +1469,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-04-04",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "1XjXWFtxdKkC",
@@ -1393,6 +1485,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2018-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "NRsxDwAAQBAJ",
@@ -1408,6 +1501,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2015-07-15",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "YbnMAAAAQBAJ",
@@ -1423,6 +1517,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "1yNWyQEACAAJ",
@@ -1435,9 +1530,10 @@ export const mockBooks = [
       "http://books.google.com/books/content?id=1yNWyQEACAAJ&printsec=frontcover&img=1&zoom=5&imgtk=AFLRE71thUKN9qvRAfh9_GM1soAVxD70blO7BNHXYSa89auk6Z-s3HCdzLRsf9r15D_7rSTjcd8UZ-lBu22A_WhK8lJnipDiaRxZcQmS-rVbdxql1KrDsuj84xvWSziCN3KzuNEuyxc7&source=gbs_api",
     year: 1857,
     read: false,
-    upcoming: false,
+    upcoming: true,
     rating: null,
     meeting_date: null,
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "HTSgAAAAQBAJ",
@@ -1453,6 +1549,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.4,
     meeting_date: "2023-12-23",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "eCJgkgEACAAJ",
@@ -1467,6 +1564,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 7.2,
     meeting_date: "2022-02-26",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "MBEOCgAAQBAJ",
@@ -1482,6 +1580,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.8,
     meeting_date: "2022-11-19",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "S8zRCgAAQBAJ",
@@ -1497,6 +1596,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2017-07-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "2Pk1DwAAQBAJ",
@@ -1512,6 +1612,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "tP0RAgAAQBAJ",
@@ -1527,6 +1628,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2016-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "eYMiEAAAQBAJ",
@@ -1542,6 +1644,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-04-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "sY9NDwAAQBAJ",
@@ -1557,6 +1660,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "6NgJEAAAQBAJ",
@@ -1572,6 +1676,7 @@ export const mockBooks = [
     upcoming: false,
     rating: 6.3,
     meeting_date: "2022-08-06",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "mfFeDwAAQBAJ",
@@ -1587,6 +1692,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-06-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "bXFQDgAAQBAJ",
@@ -1602,6 +1708,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-05-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "rUC1DQAAQBAJ",
@@ -1617,6 +1724,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2020-10-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "jto6DgAAQBAJ",
@@ -1632,6 +1740,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2021-02-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "HwZMDwAAQBAJ",
@@ -1647,6 +1756,7 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-03-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
   {
     bookid: "J3vvAwAAQBAJ",
@@ -1662,5 +1772,6 @@ export const mockBooks = [
     upcoming: false,
     rating: null,
     meeting_date: "2019-08-01",
+    club: "661811ec3e5fae3ac2c84b4d",
   },
 ];

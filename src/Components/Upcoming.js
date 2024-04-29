@@ -12,7 +12,7 @@ export default function Upcoming() {
   let fontSize;
   if (isModern)
     fontSize = upcomingBook?.title?.length > 15 ? "2.5rem" : "3.5rem";
-  else fontSize = upcomingBook?.title?.length > 15 ? "2rem" : "3rem";
+  else fontSize = upcomingBook?.title?.length > 15 ? "2.5rem" : "3.5rem";
   const fontFamily = isModern ? "var(--font-modern)" : "var(--font-classic)";
   return (
     <div

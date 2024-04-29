@@ -9,6 +9,7 @@ import axios from "axios";
 
 import { SITE_URL, CLASSIC_LIMIT, BOOK_API } from "../config";
 import { getSearchedBooks, AJAX, makeUniformedBook } from "../helpers";
+import { useAuth } from "./AuthContext";
 
 const BooksContext = createContext();
 
@@ -98,31 +99,37 @@ function BooksProvider({ children }) {
     },
     dispatch,
   ] = useReducer(reducer, initialState);
+  const { user, isLoggedIn } = useAuth();
 
   // 1) getting initial books
-  useEffect(function () {
-    async function getAllBooks() {
-      dispatch({ type: "loading" });
-      try {
-        const res = await axios({
-          method: "GET",
-          url: `${SITE_URL}api/v1/books/`,
-        });
-        if (res.data.status === "success") {
+  useEffect(
+    function () {
+      async function getAllBooks() {
+        if (!isLoggedIn) return;
+        dispatch({ type: "loading" });
+        try {
+          // geting all books for one user/club
+          const res = await axios({
+            method: "GET",
+            url: `${SITE_URL}api/v1/books/all/${user.id}`,
+          });
+          if (res.data.status === "success") {
+            dispatch({
+              type: "books/loaded",
+              payload: res.data.data.books.sort((a, b) => a.year - b.year),
+            });
+          }
+        } catch {
           dispatch({
-            type: "books/loaded",
-            payload: res.data.data.books.sort((a, b) => a.year - b.year),
+            type: "rejected",
+            payload: "Error while fetching books data!",
           });
         }
-      } catch {
-        dispatch({
-          type: "rejected",
-          payload: "Error while fetching books data!",
-        });
       }
-    }
-    getAllBooks();
-  }, []);
+      getAllBooks();
+    },
+    [user, isLoggedIn]
+  );
 
   // 2) Books from the search field
   async function searchBooks(title, page) {
