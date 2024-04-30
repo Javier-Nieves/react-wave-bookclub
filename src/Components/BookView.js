@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { CLASSIC_LIMIT } from "../config";
 import { useBooks } from "../Contexts/BooksContext";
 import Switch from "./Switch";
+
+import styles from "./BookView.module.css";
 
 export default function BookView() {
   const { id } = useParams();
   const { bookToShow, showBook, loadingBooks } = useBooks();
-  // console.log("showing: ", bookToShow);
 
   useEffect(
     function () {
@@ -33,7 +35,7 @@ export default function BookView() {
   return (
     <>
       <Switch />
-      <div id="book-view" className="book-info">
+      <div className={styles.bookInfo}>
         <BookTitle />
         <BookStats />
         <BookDescription />
@@ -44,31 +46,54 @@ export default function BookView() {
 
 function BookTitle() {
   const { bookToShow } = useBooks();
-  return <h1 className="view-title">{bookToShow.title}</h1>;
+  const bookStyle = bookToShow?.year < CLASSIC_LIMIT ? "classic" : "modern";
+  return (
+    <h1
+      className={styles.viewTitle}
+      style={{ fontFamily: `var(--font-${bookStyle})` }}
+    >
+      {bookToShow.title}
+    </h1>
+  );
 }
 
 function BookStats() {
   const { bookToShow } = useBooks();
+  const bookStyle = bookToShow?.year < CLASSIC_LIMIT ? "classic" : "modern";
   return (
-    <div className="book-info-top" style={{ gap: "10px" }}>
-      <h2 className="view-author">
+    <div className={styles.bookInfoTop}>
+      <h2
+        className={styles.viewAuthor}
+        style={{ fontFamily: `var(--font-${bookStyle})` }}
+      >
         {bookToShow.author}
         {bookToShow.year ? `, ${bookToShow.year}` : ""}
       </h2>
-      <div className="book-info-top" style={{ gap: "10px" }}>
-        <div className="view-pages">Pages: {bookToShow.pages}</div>
+      <div
+        className={styles.bookInfoTop}
+        style={{ fontFamily: `var(--font-${bookStyle})` }}
+      >
+        <div
+          className={styles.viewPages}
+          style={{ fontFamily: `var(--font-${bookStyle})` }}
+        >
+          Pages: {bookToShow.pages}
+        </div>
       </div>
-      <button className="edit-btn">Edit</button>
-      <button className="save-btn">Save</button>
+      {/* <button className="edit-btn">Edit</button>
+      <button className="save-btn">Save</button> */}
     </div>
   );
 }
 
 function BookDescription() {
   const { bookToShow } = useBooks();
+  const bookStyle = bookToShow?.year < CLASSIC_LIMIT ? "classic" : "modern";
+  // a way to show HTML code not as a string
   return (
     <div
-      className="view-desc"
+      className={styles.viewDesc}
+      style={{ fontFamily: `var(--font-${bookStyle})` }}
       dangerouslySetInnerHTML={{ __html: bookToShow.desc }}
     />
   );

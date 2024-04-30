@@ -10,7 +10,8 @@ import Dialog from "./Dialog";
 import styles from "./Main.module.css";
 
 export default function Controls() {
-  const { bookToShow, upcomingBook, books, nextBook, addBook } = useBooks();
+  const { bookToShow, upcomingBook, books, nextBook, addBook, removeBook } =
+    useBooks();
   const { user } = useAuth();
   const { countries } = useCountries();
   const [dialogIsOpen, setDialogIsOpen] = useState(false);
@@ -29,6 +30,11 @@ export default function Controls() {
   async function handleAddBook() {
     const newBook = { ...bookToShow, country, year, club: user.id };
     await addBook(newBook);
+    navigate("/app");
+  }
+
+  async function handleRemoveBook() {
+    await removeBook();
     navigate("/app");
   }
 
@@ -98,7 +104,9 @@ export default function Controls() {
 
         {books.some((b) => b === bookToShow) ? (
           <>
-            <Button type="removeBtn">Remove from the reading list</Button>
+            <Button type="removeBtn" onClick={handleRemoveBook}>
+              Remove from the reading list
+            </Button>
             {!upcomingBook && (
               <Button type="nextBtn" onClick={handleNextBook}>
                 Next

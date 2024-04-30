@@ -269,38 +269,6 @@ h2 {
   /* margin-top: 3vh; */
 }
 
-/* ? book view */
-#book-view {
-  /* display: flex; is added in JS upon showing*/
-  /* position: relative; */
-  gap: 15px;
-}
-.view-title {
-  margin-top: 8px;
-}
-.book-info {
-  margin-top: 20px;
-  background-color: rgba(232, 232, 232, 0.87);
-  border-radius: 10px;
-}
-.book-info-top {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3vw;
-}
-.view-desc,
-.newDesc {
-  font-size: 20px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 15px;
-}
-.view-pages {
-  font-size: 17px;
-}
-
 .simple-text,
 .meeting-date,
 .name-text {

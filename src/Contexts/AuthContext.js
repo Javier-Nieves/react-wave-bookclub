@@ -76,7 +76,6 @@ function AuthProvider({ children }) {
             data: { token: jwt },
           });
           if (res.data.status === "success") {
-            console.log("user is logged in");
             dispatch({
               type: "userIsAuthenticated",
               payload: res.data,

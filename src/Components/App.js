@@ -1,16 +1,17 @@
-import { Suspense, lazy } from "react";
+import { Suspense } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { useBooks } from "../Contexts/BooksContext";
 
 import { ReadingTable, HistoryTable, SearchTable } from "./TableTypes";
 import ProtectedRoutes from "../Pages/ProtectedRoutes";
+import Book from "./BookView";
+import Loader from "./Loader";
+
 import AppLayout from "../Pages/AppLayout";
 import HomePage from "../Pages/HomePage";
 import Login from "../Pages/Login";
 import NotFound from "../Pages/NotFound";
-import Book from "./BookView";
-import Loader from "./Loader";
 
 export default function App() {
   const { defaultStyle } = useBooks();

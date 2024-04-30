@@ -67,6 +67,17 @@ function reducer(state, action) {
         books: [...state.books, action.payload],
         loadingBooks: false,
       };
+    case "book/remove":
+      return {
+        ...state,
+        books: [
+          ...state.books.filter(
+            (book) => book.bookid !== state.bookToShow.bookid
+          ),
+        ],
+        bookToShow: null,
+        loadingBooks: false,
+      };
     case "search/completed":
       return {
         ...state,
@@ -229,6 +240,23 @@ function BooksProvider({ children }) {
     }
   }
 
+  // Remove Book
+  async function removeBook() {
+    dispatch({ type: "loading" });
+    try {
+      await axios({
+        method: "DELETE",
+        url: `${SITE_URL}api/v1/books/${bookToShow._id}`,
+      });
+      dispatch({ type: "book/remove" });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while removing new book!",
+      });
+    }
+  }
+
   const changeView = useCallback(function changeView(view) {
     dispatch({ type: "changeView", payload: view });
   }, []);
@@ -249,6 +277,7 @@ function BooksProvider({ children }) {
         rateBook,
         nextBook,
         addBook,
+        removeBook,
         searchBooks,
         changeView,
       }}
