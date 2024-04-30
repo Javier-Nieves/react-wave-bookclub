@@ -175,51 +175,12 @@ function BooksProvider({ children }) {
     [bookToShow, books]
   );
 
-  // Rate Book
-  async function rateBook(rating) {
-    if (!upcomingBook) return;
-    dispatch({ type: "loading" });
-    try {
-      const data = {
-        read: true,
-        rating,
-        upcoming: false,
-        meeting_date: upcomingBook.meeting_date
-          ? upcomingBook.meeting_date
-          : Date.now(),
-      };
-      await axios({
-        method: "PATCH",
-        url: `${SITE_URL}api/v1/books/${upcomingBook.bookid}`,
-        data,
-      });
-      dispatch({ type: "book/rated", payload: rating });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "Error while rating book!",
-      });
-    }
-  }
-
-  // Choose Next Book
-  async function nextBook() {
-    if (!bookToShow || upcomingBook) return;
-    dispatch({ type: "loading" });
-    try {
-      const data = { upcoming: true };
-      await axios({
-        method: "PATCH",
-        url: `${SITE_URL}api/v1/books/${bookToShow.bookid}`,
-        data,
-      });
-      dispatch({ type: "book/next" });
-    } catch {
-      dispatch({
-        type: "rejected",
-        payload: "Error while selecting next book!",
-      });
-    }
+  async function changeBookDocument(id, data) {
+    await axios({
+      method: "PATCH",
+      url: `${SITE_URL}api/v1/books/${id}`,
+      data,
+    });
   }
 
   // Add new Book
@@ -236,6 +197,60 @@ function BooksProvider({ children }) {
       dispatch({
         type: "rejected",
         payload: "Error while adding new book!",
+      });
+    }
+  }
+
+  // Add meeting date
+  async function addBookDate(meetingDate) {
+    dispatch({ type: "loading" });
+    try {
+      const data = { meeting_date: meetingDate };
+      await changeBookDocument(upcomingBook.bookid, data);
+      dispatch({ type: "book/add", payload: data });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while adding new book!",
+      });
+    }
+  }
+
+  // Rate Book
+  async function rateBook(rating) {
+    if (!upcomingBook) return;
+    dispatch({ type: "loading" });
+    try {
+      const data = {
+        read: true,
+        rating,
+        upcoming: false,
+        meeting_date: upcomingBook.meeting_date
+          ? upcomingBook.meeting_date
+          : Date.now(),
+      };
+      await changeBookDocument(upcomingBook.bookid, data);
+      dispatch({ type: "book/rated", payload: rating });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while rating book!",
+      });
+    }
+  }
+
+  // Choose Next Book
+  async function nextBook() {
+    if (!bookToShow || upcomingBook) return;
+    dispatch({ type: "loading" });
+    try {
+      const data = { upcoming: true };
+      await changeBookDocument(bookToShow.bookid, data);
+      dispatch({ type: "book/next" });
+    } catch {
+      dispatch({
+        type: "rejected",
+        payload: "Error while selecting next book!",
       });
     }
   }
@@ -277,6 +292,7 @@ function BooksProvider({ children }) {
         rateBook,
         nextBook,
         addBook,
+        addBookDate,
         removeBook,
         searchBooks,
         changeView,

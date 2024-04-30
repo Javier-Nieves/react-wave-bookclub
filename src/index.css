@@ -45,7 +45,7 @@ input,
 .newTitleInput,
 .newAuthorInput,
 .newPagesInput {
-  width: 20vw;
+  width: 60%;
   color: whitesmoke;
   font-size: 22px;
   font-family: didot;
@@ -270,7 +270,6 @@ h2 {
 }
 
 .simple-text,
-.meeting-date,
 .name-text {
   font-size: 20px;
   color: rgba(201, 201, 201, 0.94);

@@ -1,5 +1,4 @@
 /* 
-.meetingBtn,
 .modal-btn,
 .enter-btn,
 .edit-btn,
@@ -54,11 +53,12 @@ button {
   background-image: url("/public/img/register.png");
   background-position: center;
 }
-.goodBtn {
+.meetingBtn {
   border: 1px solid var(--color-bright);
-  background-color: rgba(9, 9, 9, 0.435);
+  background-color: rgba(9, 9, 9, 0.6);
   transition: transform 0.5s ease-in-out;
   font-size: 20px;
+  height: 80%;
 }
 .modal-btn {
   width: 9vw;
@@ -96,13 +96,12 @@ button:hover,
 .searchBtn:hover,
 .addBtn:hover,
 .removeBtn:hover,
-.meetingBtn:hover,
 .modal-btn:hover {
   background-color: rgba(255, 255, 255, 0.273);
   box-shadow: 0 0 5px #f9f9f9d2;
   cursor: pointer;
 }
-.goodBtn:hover {
+.meetingBtn:hover {
   background-color: rgba(5, 8, 1, 0.91);
   box-shadow: 0 0 55px #f9f9f9d2;
   transform: scale(1.1);

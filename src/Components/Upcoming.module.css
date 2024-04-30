@@ -34,16 +34,23 @@
   cursor: pointer;
   transform: translate(5px, 5px);
 }
-.addDateContainer {
-  display: flex;
-  justify-content: center;
-  margin-top: 5px;
-  gap: 10px;
-}
 .upcomingPic {
   width: 60%;
   margin: 12px;
 }
 .upcomingTitle {
   color: white;
+}
+.addDateContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
+.meetingDate {
+  font-size: 20px;
+  color: rgba(201, 201, 201, 0.94);
+}
+.picker {
+  width: 85%;
 }
