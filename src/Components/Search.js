@@ -26,9 +26,20 @@ export default function Search() {
     };
   }, []);
 
-  function searchHandler(e) {
+  // navigate back if searchResults are none
+  useEffect(
+    function () {
+      if (currentView === "search" && totalResults === 0) {
+        navigate("/app");
+        setTitleToSearch("");
+      }
+    },
+    [totalResults, currentView, navigate]
+  );
+
+  async function searchHandler(e) {
     e.preventDefault();
-    searchBooks(titleToSearch, page);
+    if (titleToSearch) await searchBooks(titleToSearch, page);
     currentView !== "search" && setTitleToSearch("");
     navigate("/app/search");
   }

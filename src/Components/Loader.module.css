@@ -3,12 +3,10 @@
   align-items: center;
   justify-content: center;
 }
-
 .loadScreenGif {
-  width: 30%;
-  /* margin: 20vh 38vw; */
+  margin-top: 20%;
+  width: 70%;
 }
-
 .loadScreenGifSmall {
   width: 15vw;
 }

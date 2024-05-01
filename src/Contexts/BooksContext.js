@@ -29,6 +29,13 @@ function reducer(state, action) {
   switch (action.type) {
     case "loading":
       return { ...state, loadingBooks: true };
+    case "search/started":
+      return {
+        ...state,
+        loadingBooks: true,
+        totalResults: 0,
+        searchResults: [],
+      };
     case "books/loaded":
       // prettier-ignore
       const upcomingBook = action.payload.find((book) => book.upcoming === true);
@@ -79,6 +86,7 @@ function reducer(state, action) {
         loadingBooks: false,
       };
     case "search/completed":
+      if (action.payload.total === 0) return { ...state, loadingBooks: false };
       return {
         ...state,
         loadingBooks: false,
@@ -87,7 +95,11 @@ function reducer(state, action) {
         searchResults: action.payload.results,
       };
     case "changeView":
-      return { ...state, currentView: action.payload, bookToShow: undefined };
+      return {
+        ...state,
+        currentView: action.payload,
+        bookToShow: undefined,
+      };
     case "rejected":
       return { ...state, loadingBooks: false, error: action.payload };
     default:
@@ -144,9 +156,8 @@ function BooksProvider({ children }) {
 
   // 2) Books from the search field
   async function searchBooks(title, page) {
-    dispatch({ type: "loading" });
+    dispatch({ type: "search/started" });
     const searchResults = await getSearchedBooks(title, page);
-    if (!searchResults) return;
     dispatch({ type: "search/completed", payload: searchResults });
   }
 

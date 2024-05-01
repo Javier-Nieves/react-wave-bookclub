@@ -22,14 +22,13 @@ export default function Upcoming() {
   const fontFamily = isModern ? "var(--font-modern)" : "var(--font-classic)";
 
   function handleChangeDate(e) {
-    console.log("changing date", date);
     e.preventDefault();
     addBookDate(date);
   }
 
   // transform meeting date
   let formattedDate;
-  if (upcomingBook.meeting_date) {
+  if (upcomingBook?.meeting_date) {
     const dateString = upcomingBook.meeting_date;
     const meetDate = new Date(dateString);
     const day = meetDate.getDate().toString().padStart(2, "0");
@@ -69,7 +68,7 @@ export default function Upcoming() {
         )}
         <img
           className={styles.upcomingPic}
-          src={upcomingBook?.image_link || "/img/club2.png"}
+          src={upcomingBook?.image_link || "/public/img/club2.png"}
           loading="lazy"
           alt="upcoming book"
         />

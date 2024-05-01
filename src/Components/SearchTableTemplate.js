@@ -6,6 +6,7 @@ import styles from "./Tables.module.css";
 export default function SearchTable() {
   const { searchResults } = useBooks();
 
+  if (!searchResults) return;
   return (
     <table>
       <thead>

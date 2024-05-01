@@ -1,15 +1,7 @@
-/* 
-.modal-btn,
-.enter-btn,
-.edit-btn,
-.pagination-btn,
-.welcome-btn,
-.example-enter */
-
 button {
   color: rgba(201, 201, 201, 0.94);
-  font-size: 20px;
-  font-family: didot;
+  font-size: 22px;
+  font-family: var(--font-classic);
   border: 1px solid gray;
   border-radius: 8px;
   padding: 8px;

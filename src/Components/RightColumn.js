@@ -14,7 +14,7 @@ export default function RightColumn() {
   return (
     <div className={styles.mainRightPart}>
       {(loadingBooks || loadingCountries) && <Loader />}
-      <Outlet />
+      {!loadingBooks && !loadingCountries && <Outlet />}
     </div>
   );
 }
