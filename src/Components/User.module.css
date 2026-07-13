@@ -8,6 +8,7 @@
 }
 
 .nameText {
+  text-transform: capitalize;
   font-size: 24px;
   font-family: var(--font-classic);
   color: rgba(201, 201, 201, 0.94);

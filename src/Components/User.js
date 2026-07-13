@@ -9,9 +9,7 @@ function User() {
     <div className={styles.enterContainer}>
       {isLoggedIn && (
         <>
-          <div className={styles.nameText}>
-            {user.name.at(0).toUpperCase() + user.name.slice(1)} Bookclub
-          </div>
+          <div className={styles.nameText}>{user} Bookclub</div>
           <Button type="enter-btn" onClick={logout}>
             Logout
           </Button>
